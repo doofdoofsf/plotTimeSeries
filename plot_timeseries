@@ -1,7 +1,7 @@
 #!/usr/bin/Rscript
 require('getopt');
 
-remove_outliers <- function(x, na.rm = TRUE, ...) {
+removeOutliers <- function(x, na.rm = TRUE, ...) {
   qnt <- quantile(x, probs=c(.25, .75), na.rm = na.rm, ...)
   H <- 1.5 * IQR(x, na.rm = na.rm)
   y <- x
@@ -48,7 +48,7 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, y_range, filen
   if(!is.null(title)) { title_string = sprintf(title, niceDateFormat(first_date_string), niceDateFormat(last_date_string)) } else { title_string = NULL }
   d <- as.Date(x, "%m/%d/%Y")
 
-  if(remove_outliers) { y <- remove_outliers(y) }
+  if(remove_outliers) { y <- removeOutliers(y) }
 
   # start the png device driver
   png(filename=filename, height=height, width=width, bg="white")
