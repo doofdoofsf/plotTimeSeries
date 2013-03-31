@@ -1,0 +1,36 @@
+#!/bin/bash
+cat << EOT
+# plot_timeseries
+
+The plot_timeseries is a simple utility for plotting a timeseries graph using R
+with some flexibility. This is handy for e.g. plotting KPI values over time.
+
+## Requirements
+
+To use this script, you need to install R and the getopt package. To install 
+the getopt package, fire up R and type in something like:
+
+    install.packages('getopt', repos='http://cran.us.r-project.org')
+
+You should be good to go.
+
+## Usage
+
+EOT
+
+../plot_timeseries -h 2>/dev/null | sed "s/^/    /"
+
+cat << EOT
+
+## Testing
+
+There is a test directory
+
+    test/test_data - a directory with some test csv files in it
+    test/output    - a directory that the test script dumps images into
+    run_test       - a bash script that calls plot_timeseries to generate a few graphs
+
+    $ cd test
+    $ ./run_test 
+    $ ls output/*.png
+EOT

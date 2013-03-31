@@ -16,9 +16,9 @@ You should be good to go.
 
     NAME
           plot_timeseries
-
+    
     SYNOPSIS
-           Usage: ./plot_timeseries [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-csv_filename|c] <character>] [-[-output_filename|f] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-x_spacing|x] [<character>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
+           Usage: ../plot_timeseries [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-csv_filename|c] <character>] [-[-output_filename|f] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-x_spacing|x] [<character>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
     
     DESCRIPTION
           The plot_timeseries is a simple utility for plotting a timeseries graph using R
@@ -40,6 +40,7 @@ You should be good to go.
           --point_color        The color to draw points in
           --sunday_point_color The color to draw sunday points in
           --axis_color         The color to use for the axis
+          --smoothness         How much to smooth the LOESS fit line. Float between 0 and 1
           --remove_outliers    Automagically remove outlying points?
           --show_gridlines     Show gridlines?
     
@@ -52,10 +53,10 @@ You should be good to go.
           03/06/2012,6347.04
           03/07/2012,9990.23
           03/08/2012,6773.41
-
+    
     COLOR
           Available colors documented at: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
-
+    
 
 ## Testing
 
