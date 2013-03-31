@@ -5,12 +5,10 @@ with some flexibility. This is handy for e.g. plotting KPI values over time.
 
 ## Requirements
 
-To use this script, you need to [install R](http://cran.r-project.org/mirrors.html) and then get the getopt package. 
-To install the getopt package, fire up R and type in something like:
+To use this script, you need to [install R](http://cran.r-project.org/mirrors.html) and then get the `getopt` package. 
+To install the `getopt` package, fire up R and type in something like:
 
     install.packages('getopt', repos='http://cran.us.r-project.org')
-
-You should be good to go.
 
 ## Usage
 
@@ -60,7 +58,7 @@ You should be good to go.
 
 ## Testing
 
-There is a test directory
+There is a test directory with some lovely testy stuff in it:
 
     test/test_data - a directory with some test csv files in it
     test/output    - a directory that the test script dumps images into
@@ -69,3 +67,13 @@ There is a test directory
     $ cd test
     $ ./run_test 
     $ ls output/*.png
+
+## Examples
+
+Example graphs are shown below. These are produced by from the data in the `test` directory
+
+#### A simple graph showing registrations by time
+![registrations by time](https://raw.github.com/doofdoofsf/plot_timeseries/master/test/output/acme_registrations_thumb.png)
+
+#### The same graph with a bit more detail
+![registrations by time](https://raw.github.com/doofdoofsf/plot_timeseries/master/test/output/acme_registrations.png)
