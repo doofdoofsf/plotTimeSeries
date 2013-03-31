@@ -1,0 +1,12 @@
+#!/bin/bash
+rm output/unbranded_organic_registrations*.png output/unbranded_organic_revenue*.png
+
+../plot_timeseries --verbose --width=1200 --height=700 --x_spacing=week --csv_filename=test_data/unbranded_organic_registrations.csv --output_filename=output/unbranded_organic_registrations.png --show_gridlines --title="Unbranded Organic Registrations: %s to %s" --y_title="Number Registrations" --remove_outliers
+
+../plot_timeseries --verbose --width=500 --height=400 --x_spacing="month" --csv_filename=test_data/unbranded_organic_registrations.csv --output_filename=output/unbranded_organic_registrations_thumb.png --point_color=gray80 --sunday_point_color=gray80 --remove_outliers --smoothness=0.8
+
+../plot_timeseries --verbose --width=1200 --height=700 --x_spacing=week --csv_filename=test_data/unbranded_organic_revenue.csv --output_filename=output/unbranded_organic_revenue.png --show_gridlines --title="Unbranded Organic Revenue: %s to %s" --remove_outliers
+
+../plot_timeseries --verbose --width=500 --height=400 --x_spacing="2 months" --csv_filename=test_data/unbranded_organic_revenue.csv --output_filename=output/unbranded_organic_revenue_thumb.png --point_color=gray80 --sunday_point_color=gray80 --remove_outliers --smoothness=0.8
+
+open output/unbranded_organic_revenue*.png output/unbranded_organic_registrations*.png
