@@ -8,7 +8,7 @@ with some flexibility. This is handy for e.g. plotting KPI values over time.
 ## Requirements
 
 To use this script, you need to [install R](http://cran.r-project.org/mirrors.html) and then get the \`getopt\` package. 
-To install the \`getopt\` package, fire up R and type in something like:
+To install the \`getopt\` package, fire up R (type R in your terminal) and type in something like:
 
     install.packages('getopt', repos='http://cran.us.r-project.org')
 

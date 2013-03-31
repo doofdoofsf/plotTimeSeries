@@ -6,7 +6,7 @@ with some flexibility. This is handy for e.g. plotting KPI values over time.
 ## Requirements
 
 To use this script, you need to [install R](http://cran.r-project.org/mirrors.html) and then get the `getopt` package. 
-To install the `getopt` package, fire up R and type in something like:
+To install the `getopt` package, fire up R (type R in your terminal) and type in something like:
 
     install.packages('getopt', repos='http://cran.us.r-project.org')
 
@@ -43,7 +43,7 @@ To install the `getopt` package, fire up R and type in something like:
           --show_gridlines     Show gridlines?
     
     EXAMPLES
-          ./plot_timeseries --width=800 --height=400 --x_spacing=month --csv_filename=test_data/unbranded_organic_registrations.csv --output_filename=output/unbranded_organic_registrations.png --title="Unbranded Organic Registrations: %s to %s" --y_title="Number Registrations"
+          $ plot_timeseries --width=800 --height=400 --x_spacing=month --csv_filename=test_data/unbranded_organic_registrations.csv --output_filename=output/unbranded_organic_registrations.png --title="Unbranded Organic Registrations: %s to %s" --y_title="Number Registrations"
     
     
     EXAMPLE INPUT FILE
