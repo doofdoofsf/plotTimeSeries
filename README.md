@@ -59,4 +59,12 @@ You should be good to go.
 
 ## Testing
 
-You will find some test data in the test directory
+There is a test directory
+
+    test/test_data - a directory with some test csv files in it
+    test/output    - a directory that the test script dumps images into
+    run_test       - a bash script that calls plot_timeseries to generate a few graphs
+
+    $ cd test
+    $ ./run_test 
+    $ ls output/*.png
