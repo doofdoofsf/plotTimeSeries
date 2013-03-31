@@ -10,18 +10,18 @@ remove_outliers <- function(x, na.rm = TRUE, ...) {
   y
 }
 
-trimDateRange <- function(startDate, endDate)
+trimDateRange <- function(start_date, end_date)
 {
-  myDays <- seq(startDate , endDate, by = "day")
-  firstSunday <- which(weekdays(head(myDays, 7)) == "Sunday")
-  lastSunday <- length(myDays) - 7 + which(weekdays(tail(myDays, 7)) == "Sunday")
-  trimmedDateRange <- myDays[firstSunday:lastSunday]
-  return(trimmedDateRange)
+  my_days <- seq(start_date, end_date, by = "day")
+  first_sunday <- which(weekdays(head(my_days, 7)) == "Sunday")
+  last_sunday <- length(my_days) - 7 + which(weekdays(tail(my_days, 7)) == "Sunday")
+  trimmed_date_range <- my_days[first_sunday:last_sunday]
+  return(trimmed_date_range)
 }
 
-niceDateFormat <- function(dateString)
+niceDateFormat <- function(date_string)
 {
-  d <- as.Date(dateString, "%m/%d/%Y")
+  d <- as.Date(date_string, "%m/%d/%Y")
   pretty_date_string = strftime(d, format="%d%b%y")
   return(pretty_date_string)
 }
@@ -73,7 +73,7 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, y_range, filen
   garbage <- dev.off()
 }
 
-dump_opt <- function(opt)
+dumpOpt <- function(opt)
 {
   cat("generating graph to file:      ", opt$output_filename, "\n")
   cat("using data file:               ", opt$csv_filename, "\n")
@@ -168,7 +168,7 @@ if ( is.null(opt$verbose ) ) { opt$verbose = FALSE }
 if ( is.null(opt$csv_filename) ) { usage(spec) }
 if ( is.null(opt$output_filename) ) { usage(spec) }
 
-if (opt$verbose) { dump_opt(opt) }
+if (opt$verbose) { dumpOpt(opt) }
 
 kpi_data=read.table(opt$csv_filename, sep=",", head=TRUE)
 
