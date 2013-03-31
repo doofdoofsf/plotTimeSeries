@@ -28,7 +28,7 @@ You should be good to go.
     OPTIONS
           The options are as follows:
     
-          --verbose            Get a little chatty
+          --verbose            Get a little chatty?
           --width              The width of the graph in pixels
           --height             The height of the graph in pixels
           --csv_filename       A CSV containing input data with columns date,value (example below)
@@ -40,7 +40,7 @@ You should be good to go.
           --point_color        The color to draw points in
           --sunday_point_color The color to draw sunday points in
           --axis_color         The color to use for the axis
-          --remove_outliers    Automagically remove outlying points
+          --remove_outliers    Automagically remove outlying points?
           --show_gridlines     Show gridlines?
     
     EXAMPLES
