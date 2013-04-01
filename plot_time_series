@@ -1,4 +1,27 @@
 #!/usr/bin/Rscript
+
+#
+#   Copyright John Quinn, 2013
+#
+#   This program is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#
+# xenBackup - Backup Xen Domains
+#
+#     Version:    1.0:     Created:  John D Quinn, http://www.johnandcailin.com/john
+#
+
 require('getopt');
 
 removeOutliers <- function(x, na.rm = TRUE, ...) {
@@ -10,8 +33,7 @@ removeOutliers <- function(x, na.rm = TRUE, ...) {
   y
 }
 
-trimDateRange <- function(start_date, end_date)
-{
+trimDateRange <- function(start_date, end_date) {
   my_days <- seq(start_date, end_date, by = "day")
   first_sunday <- which(weekdays(head(my_days, 7)) == "Sunday")
   last_sunday <- length(my_days) - 7 + which(weekdays(tail(my_days, 7)) == "Sunday")
@@ -19,15 +41,13 @@ trimDateRange <- function(start_date, end_date)
   return(trimmed_date_range)
 }
 
-niceDateFormat <- function(date_string)
-{
+niceDateFormat <- function(date_string) {
   d <- as.Date(date_string, "%m/%d/%Y")
   pretty_date_string = strftime(d, format="%d%b%y")
   return(pretty_date_string)
 }
 
-setMargins <- function(title_string, y_axis_label, axis_color)
-{
+setMargins <- function(title_string, y_axis_label, axis_color) {
   # http://stat.ethz.ch/R-manual/R-patched/library/graphics/html/par.html
   bottom_margin = 5
   top_margin <- if (is.null(title_string)) 1 else 4
@@ -40,8 +60,7 @@ setMargins <- function(title_string, y_axis_label, axis_color)
 
 }
 
-plotGraph <- function(x, y, width, height, x_spacing, smoothness, y_range, filename, title, y_axis_label, y_axis_unit, point_color, sunday_point_color, show_gridlines, remove_outliers, axis_color)
-{
+plotGraph <- function(x, y, width, height, x_spacing, smoothness, y_range, filename, title, y_axis_label, y_axis_unit, point_color, sunday_point_color, show_gridlines, remove_outliers, axis_color) { 
   date_format = "%d%b%y"
   first_date_string=x[1]
   last_date_string=x[length(x)]
@@ -63,8 +82,7 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, y_range, filen
   axis.Date(1, at=date_sequence, format=date_format, las=2)
   y_sequence=pretty(y, n=6)
   axis(2, las=2, at=y_sequence, labels=paste(y_sequence, y_axis_unit, sep=""))
-  if(show_gridlines)
-  {
+  if(show_gridlines) {
     abline(v=date_sequence, col="gray87")
     abline(h=y_sequence, col="gray87")
   }
@@ -73,8 +91,7 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, y_range, filen
   garbage <- dev.off()
 }
 
-dumpOpt <- function(opt)
-{
+dumpOpt <- function(opt) {
   cat("generating graph to file:      ", opt$output_filename, "\n")
   cat("using data file:               ", opt$csv_filename, "\n")
   cat("graph title:                   ", opt$title, "\n")
@@ -91,8 +108,7 @@ dumpOpt <- function(opt)
   cat("remove_outliers:               ", opt$remove_outliers, "\n")
 }
 
-usage <- function(spec)
-{
+usage <- function(spec) {
   cat("NAME\n")
   cat("      plot_time_series\n")
   cat("\nSYNOPSIS\n")
