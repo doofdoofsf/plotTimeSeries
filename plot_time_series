@@ -60,7 +60,7 @@ setMargins <- function(title_string, y_axis_label, axis_color) {
 
 }
 
-plotGraph <- function(x, y, width, height, x_spacing, smoothness, y_range, filename, title, y_axis_label, y_axis_unit, point_color, sunday_point_color, show_gridlines, remove_outliers, axis_color) { 
+plotGraph <- function(x, y, width, height, x_spacing, smoothness, y_range, filename, title, y_axis_label, y_axis_unit, point_color, sunday_point_color, show_gridlines, remove_outliers, axis_color, trim_to_week) { 
   date_format = "%d%b%y"
   first_date_string=x[1]
   last_date_string=x[length(x)]
@@ -74,11 +74,16 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, y_range, filen
 
   setMargins(title_string, y_axis_label, axis_color)
 
-  scatter.smooth(d, y, col=ifelse((format(d, format="%A")=="Sunday"), sunday_point_color, point_color), xlab="", ylab="", ylim=y_range, span=smoothness, xaxt='n', yaxt='n')
+  scatter.smooth(d, y, family="gaussian", col=ifelse((format(d, format="%A")=="Sunday"), sunday_point_color, point_color), xlab="", ylab="", ylim=y_range, span=smoothness, xaxt='n', yaxt='n')
   if(!is.null(title_string)) { mtext(side=3, line=1.2, cex=1.6, text=title_string, col="darkorange4") }
   if(!is.null(y_axis_label)) { mtext(side=2, line=3.4, cex=1.3, text=y_axis_label, col="darkorange4") }
-  c=trimDateRange(d[1],d[length(d)])
-  date_sequence=seq(c[1], c[length(c)], x_spacing)
+  
+  if(trim_to_week) {
+    c=trimDateRange(d[1],d[length(d)])
+    date_sequence=seq(c[1], c[length(c)], x_spacing)
+  } else {
+    date_sequence=d
+  }
   axis.Date(1, at=date_sequence, format=date_format, las=2)
   y_sequence=pretty(y, n=6)
   axis(2, las=2, at=y_sequence, labels=paste(y_sequence, y_axis_unit, sep=""))
@@ -133,6 +138,7 @@ usage <- function(spec) {
   cat("      --axis_color         The color to use for the axis\n")
   cat("      --smoothness         How much to smooth the LOESS fit line. Float between 0 and 1\n")
   cat("      --remove_outliers    Automagically remove outlying points?\n")
+  cat("      --trim_to_week       Trim the X axis to whole weeks?\n")
   cat("      --show_gridlines     Show gridlines?\n")
   cat("\nEXAMPLES\n")
   cat("      $ plot_time_series --width=800 --height=400 --x_spacing=month --csv_filename=test_data/unbranded_organic_registrations.csv --output_filename=output/unbranded_organic_registrations.png --title=\"Unbranded Organic Registrations: %s to %s\" --y_title=\"Number Registrations\"\n\n")
@@ -152,6 +158,7 @@ spec = matrix(c(
   'help', 'h', 0, "logical",
   'show_gridlines', 'g', 0, "logical",
   'remove_outliers', 'o', 0, "logical",
+  'trim_to_week', 'T', 0, "logical",
   'csv_filename', 'c', 1, "character",
   'output_filename', 'f', 1, "character",
   'title', 't', 1, "character",
@@ -180,6 +187,7 @@ if ( is.null(opt$sunday_point_color ) ) { opt$sunday_point_color = "red" }
 if ( is.null(opt$axis_color ) ) { opt$axis_color = "gray30" }
 if ( is.null(opt$show_gridlines ) ) { opt$show_gridlines = FALSE }
 if ( is.null(opt$remove_outliers ) ) { opt$remove_outliers = FALSE }
+if ( is.null(opt$trim_to_week ) ) { opt$trim_to_week = FALSE }
 if ( is.null(opt$verbose ) ) { opt$verbose = FALSE }
 if ( is.null(opt$csv_filename) ) { usage(spec) }
 if ( is.null(opt$output_filename) ) { usage(spec) }
@@ -191,4 +199,4 @@ kpi_data=read.table(opt$csv_filename, sep=",", head=TRUE)
 x <- kpi_data$date
 y <- kpi_data$value
 
-plotGraph(x, y, opt$width, opt$height, opt$x_spacing, opt$smoothness, NULL, opt$output_filename, opt$title, opt$y_title, opt$y_unit, opt$point_color, opt$sunday_point_color, opt$show_gridlines, opt$remove_outliers, opt$axis_color)
+plotGraph(x, y, opt$width, opt$height, opt$x_spacing, opt$smoothness, NULL, opt$output_filename, opt$title, opt$y_title, opt$y_unit, opt$point_color, opt$sunday_point_color, opt$show_gridlines, opt$remove_outliers, opt$axis_color, opt$trim_to_week)
