@@ -1,6 +1,6 @@
-# plot_timeseries
+# plot_time_series
 
-The plot_timeseries is a simple utility for plotting a timeseries graph using R
+The plot_time_series is a simple utility for plotting a time_series graph using R
 with some flexibility. This is handy for e.g. plotting KPI values over time.
 
 ## Requirements
@@ -13,13 +13,13 @@ To install the `getopt` package, fire up R (type R in your terminal) and type in
 ## Usage
 
     NAME
-          plot_timeseries
+          plot_time_series
     
     SYNOPSIS
-           Usage: ../plot_timeseries [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-csv_filename|c] <character>] [-[-output_filename|f] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-x_spacing|x] [<character>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
+           Usage: ../plot_time_series [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-csv_filename|c] <character>] [-[-output_filename|f] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-x_spacing|x] [<character>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
     
     DESCRIPTION
-          The plot_timeseries is a simple utility for plotting a timeseries graph using R
+          The plot_time_series is a simple utility for plotting a time_series graph using R
           with some flexibility. This is handy for e.g. plotting KPI values over time.
           The graph is drawn as a scatterplot with a LOESS fit line of controllable smoothness
     
@@ -43,7 +43,7 @@ To install the `getopt` package, fire up R (type R in your terminal) and type in
           --show_gridlines     Show gridlines?
     
     EXAMPLES
-          $ plot_timeseries --width=800 --height=400 --x_spacing=month --csv_filename=test_data/unbranded_organic_registrations.csv --output_filename=output/unbranded_organic_registrations.png --title="Unbranded Organic Registrations: %s to %s" --y_title="Number Registrations"
+          $ plot_time_series --width=800 --height=400 --x_spacing=month --csv_filename=test_data/unbranded_organic_registrations.csv --output_filename=output/unbranded_organic_registrations.png --title="Unbranded Organic Registrations: %s to %s" --y_title="Number Registrations"
     
     
     EXAMPLE INPUT FILE
@@ -62,7 +62,7 @@ There is a test directory with some lovely testy stuff in it:
 
     test/test_data - a directory with some test csv files in it
     test/output    - a directory that the test script dumps images into
-    run_test       - a bash script that calls plot_timeseries to generate a few graphs
+    run_test       - a bash script that calls plot_time_series to generate a few graphs
 
     $ cd test
     $ ./run_test 
@@ -73,7 +73,7 @@ There is a test directory with some lovely testy stuff in it:
 Example graphs are shown below. These are produced by from the data in the `test` directory
 
 #### A simple graph showing registrations by time
-![registrations by time](https://raw.github.com/doofdoofsf/plot_timeseries/master/test/output/acme_registrations_thumb.png)
+![registrations by time](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations_thumb.png)
 
 #### The same graph with a bit more detail
-![registrations by time](https://raw.github.com/doofdoofsf/plot_timeseries/master/test/output/acme_registrations.png)
+![registrations by time](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations.png)
