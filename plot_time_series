@@ -114,9 +114,9 @@ usage <- function(spec) {
   cat("\nSYNOPSIS\n")
   cat("      ",getopt(spec, usage=TRUE));
   cat("\nDESCRIPTION\n")
-  cat("      The plot_time_series is a simple utility for plotting a time series graph using R\n")
+  cat("      The plot_time_series is a simple utility for plotting a time series graph using R.\n")
   cat("      This is useful for e.g. plotting KPI values over time.\n")
-  cat("      The graph is drawn as a scatterplot with a LOESS fit line of variable smoothness\n")
+  cat("      The graph is drawn as a scatterplot with a LOESS fit line of variable smoothness.\n")
   cat("\nOPTIONS\n")
   cat("      The options are as follows:\n\n")
   cat("      --verbose            Get a little chatty?\n")
