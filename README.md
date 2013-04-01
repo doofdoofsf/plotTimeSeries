@@ -19,9 +19,9 @@ To install the `getopt` package, fire up R (type R in your terminal) and type in
            Usage: ../plot_time_series [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-csv_filename|c] <character>] [-[-output_filename|f] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-x_spacing|x] [<character>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
     
     DESCRIPTION
-          The plot_time_series is a simple utility for plotting a time_series graph using R
-          with some flexibility. This is handy for e.g. plotting KPI values over time.
-          The graph is drawn as a scatterplot with a LOESS fit line of controllable smoothness
+          The plot_time_series is a simple utility for plotting a time series graph using R
+          This is useful for e.g. plotting KPI values over time.
+          The graph is drawn as a scatterplot with a LOESS fit line of variable smoothness
     
     OPTIONS
           The options are as follows:

@@ -17,7 +17,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #
-# xenBackup - Backup Xen Domains
+# plot_time_series - A simple utility for plotting a time_series graph
 #
 #     Version:    1.0:     Created:  John D Quinn, http://www.johnandcailin.com/john
 #
@@ -114,9 +114,9 @@ usage <- function(spec) {
   cat("\nSYNOPSIS\n")
   cat("      ",getopt(spec, usage=TRUE));
   cat("\nDESCRIPTION\n")
-  cat("      The plot_time_series is a simple utility for plotting a time_series graph using R\n")
-  cat("      with some flexibility. This is handy for e.g. plotting KPI values over time.\n")
-  cat("      The graph is drawn as a scatterplot with a LOESS fit line of controllable smoothness\n")
+  cat("      The plot_time_series is a simple utility for plotting a time series graph using R\n")
+  cat("      This is useful for e.g. plotting KPI values over time.\n")
+  cat("      The graph is drawn as a scatterplot with a LOESS fit line of variable smoothness\n")
   cat("\nOPTIONS\n")
   cat("      The options are as follows:\n\n")
   cat("      --verbose            Get a little chatty?\n")
