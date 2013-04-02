@@ -37,7 +37,7 @@ To install the `getopt` package, fire up R (type R in your terminal) and type in
           --x_spacing          How the x-axis is spaced e.g. day, 3 days, week, month, 2 weeks, 2 months
           --point_color        The color to draw points in
           --sunday_point_color The color to draw sunday points in
-          --input_date_format  The format of the date in the datafile
+          --input_date_format  The format of the date in the datafile, default is "%m/%d/%Y"
           --axis_color         The color to use for the axis
           --smoothness         How much to smooth the LOESS fit line. Float between 0 and 1
           --remove_outliers    Automagically remove outlying points?

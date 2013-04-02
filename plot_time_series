@@ -134,7 +134,7 @@ usage <- function(spec) {
   cat("      --x_spacing          How the x-axis is spaced e.g. day, 3 days, week, month, 2 weeks, 2 months\n")
   cat("      --point_color        The color to draw points in\n")
   cat("      --sunday_point_color The color to draw sunday points in\n")
-  cat("      --input_date_format  The format of the date in the datafile\n")
+  cat("      --input_date_format  The format of the date in the datafile, default is \"%m/%d/%Y\"\n")
   cat("      --axis_color         The color to use for the axis\n")
   cat("      --smoothness         How much to smooth the LOESS fit line. Float between 0 and 1\n")
   cat("      --remove_outliers    Automagically remove outlying points?\n")
