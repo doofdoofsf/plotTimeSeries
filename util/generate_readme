@@ -5,12 +5,14 @@ cat << EOT
 The plot_time_series is a simple utility for plotting a time_series graph using R
 with some flexibility. This is handy for e.g. plotting KPI values over time.
 
-## Requirements
+## Installation
 
 To use this script, you need to [install R](http://cran.r-project.org/mirrors.html) and then get the \`getopt\` package. 
 To install the \`getopt\` package, fire up R (type R in your terminal) and type in something like:
 
     install.packages('getopt', repos='http://cran.us.r-project.org')
+
+If your R binary is somewhere other than \`/usr/bin\` you'll need to edit the first line of \`plot_time_series\` to point it at the correct location. Do \`which R\` to find it.
 
 ## Usage
 
