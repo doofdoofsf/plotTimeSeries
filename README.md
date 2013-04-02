@@ -16,12 +16,12 @@ To install the `getopt` package, fire up R (type R in your terminal) and type in
           plot_time_series
     
     SYNOPSIS
-           Usage: ../plot_time_series [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-csv_filename|c] <character>] [-[-output_filename|f] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-x_spacing|x] [<character>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
+           Usage: ../plot_time_series [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-trim_to_week|T]] [-[-csv_filename|c] <character>] [-[-output_filename|f] <character>] [-[-input_date_format|d] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-x_spacing|x] [<character>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
     
     DESCRIPTION
-          The plot_time_series is a simple utility for plotting a time series graph using R
+          The plot_time_series is a simple utility for plotting a time series graph using R.
           This is useful for e.g. plotting KPI values over time.
-          The graph is drawn as a scatterplot with a LOESS fit line of variable smoothness
+          The graph is drawn as a scatterplot with a LOESS fit line of variable smoothness.
     
     OPTIONS
           The options are as follows:
@@ -37,9 +37,11 @@ To install the `getopt` package, fire up R (type R in your terminal) and type in
           --x_spacing          How the x-axis is spaced e.g. day, 3 days, week, month, 2 weeks, 2 months
           --point_color        The color to draw points in
           --sunday_point_color The color to draw sunday points in
+          --input_date_format  The format of the date in the datafile
           --axis_color         The color to use for the axis
           --smoothness         How much to smooth the LOESS fit line. Float between 0 and 1
           --remove_outliers    Automagically remove outlying points?
+          --trim_to_week       Trim the X axis to whole weeks?
           --show_gridlines     Show gridlines?
     
     EXAMPLES
