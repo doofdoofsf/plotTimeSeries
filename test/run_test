@@ -1,14 +1,34 @@
 #!/bin/bash
-rm output/acme_registrations*.png output/acme_revenue*.png
+rm output/acme_registrations*.png output/acme_revenue*.png 2> /dev/null
+error_file=/tmp/plot_time_series_error.txt
+rm ${error_file} 2> /dev/null
 
-../plot_time_series --verbose --width=1200 --height=700 --x_spacing=week --csv_filename=test_data/acme_registrations.csv --output_filename=output/acme_registrations.png --show_gridlines --title="Acme Registrations: %s to %s" --y_title="Number Registrations" --remove_outliers
+echo "generating registrations graph"
+../plot_time_series --width=1200 --height=700 --x_spacing=week --csv_filename=test_data/acme_registrations.csv \
+  --output_filename=output/acme_registrations.png --show_gridlines --title="Acme Registrations: %s to %s" \
+  --y_title="Number Registrations" --remove_outliers 2>> ${error_file}
 
-../plot_time_series --verbose --width=500 --height=400 --x_spacing=month --csv_filename=test_data/acme_registrations.csv --output_filename=output/acme_registrations_thumb.png --point_color=gray80 --sunday_point_color=gray80 --remove_outliers --smoothness=0.8
+echo "generating registrations thumb"
+../plot_time_series --width=500 --height=400 --x_spacing=month --csv_filename=test_data/acme_registrations.csv \
+  --output_filename=output/acme_registrations_thumb.png --point_color=gray80 --sunday_point_color=gray80 \
+  --remove_outliers --smoothness=0.8 2>> ${error_file}
 
-../plot_time_series --verbose --width=1200 --height=700 --x_spacing=week --csv_filename=test_data/acme_revenue.csv --output_filename=output/acme_revenue.png --show_gridlines --title="Acme Revenue: %s to %s" --remove_outliers
+echo "generating revenue graph"
+../plot_time_series --width=1200 --height=700 --x_spacing=week --csv_filename=test_data/acme_revenue.csv \
+  --output_filename=output/acme_revenue.png --show_gridlines --title="Acme Revenue: %s to %s" \
+  --remove_outliers 2>> ${error_file}
 
-../plot_time_series --verbose --width=500 --height=400 --x_spacing="2 months" --csv_filename=test_data/acme_revenue.csv --output_filename=output/acme_revenue_thumb.png --point_color=gray80 --sunday_point_color=gray80 --remove_outliers --smoothness=0.8
+echo "generating revenue thumb"
+../plot_time_series --width=500 --height=400 --x_spacing="2 months" --csv_filename=test_data/acme_revenue.csv \
+  --output_filename=output/acme_revenue_thumb.png --point_color=gray80 --sunday_point_color=gray80 \
+  --remove_outliers --smoothness=0.8 2>> ${error_file}
 
-../plot_time_series --verbose --width=1200 --height=700 --x_spacing=week --csv_filename=test_data/acme_revenue.csv --output_filename=output/acme_revenue_targets.png --show_gridlines --title="Acme Revenue: %s to %s" --remove_outliers --special_points_filename=test_data/acme_revenue_targets.csv --special_points_color=cornflowerblue --point_color=gray80 --sunday_point_color=gray80
+echo "generating revenue graph with targets"
+../plot_time_series --width=1200 --height=700 --x_spacing=week --csv_filename=test_data/acme_revenue.csv \
+  --output_filename=output/acme_revenue_targets.png --show_gridlines --title="Acme Revenue: %s to %s" --remove_outliers \
+  --special_points_filename=test_data/acme_revenue_targets.csv --special_points_color=cornflowerblue --point_color=gray80 \
+  --sunday_point_color=gray80 2>> ${error_file}
+
+cat ${error_file}
 
 open output/acme_revenue*.png output/acme_registrations*.png

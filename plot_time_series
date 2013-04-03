@@ -22,7 +22,7 @@
 #     Version:    1.0:     Created:  John D Quinn, http://www.johnandcailin.com/john
 #
 
-require('getopt');
+require('getopt', quietly=TRUE);
 
 removeOutliers <- function(x, na.rm = TRUE, ...) {
   qnt <- quantile(x, probs=c(.25, .75), na.rm = na.rm, ...)
@@ -57,9 +57,9 @@ setMargins <- function(title_string, y_axis_label, axis_color) {
   par(mar = c(bottom_margin, left_margin, top_margin, right_margin), mgp = c(title_margin_line, axis_label_margin_line, axis_line_margin_line), col.axis = axis_color)
 }
 
-drawSpecialPoints <- function(special_points, special_points_color) {
+drawSpecialPoints <- function(special_points, special_points_color, input_date_format) {
   if(!is.null(special_points)) {
-    spx <- as.Date(special_points$date, opt$input_date_format)
+    spx <- as.Date(special_points$date, input_date_format)
     spy <- special_points$value
     spl <- special_points$label
 
@@ -90,7 +90,7 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_ran
   setMargins(title_string, y_axis_label, axis_color)
 
   scatter.smooth(d, y, family="gaussian", col=ifelse((format(d, format="%A")=="Sunday"), sunday_point_color, point_color), xlab="", ylab="", ylim=y_range, xlim=x_range, span=smoothness, xaxt='n', yaxt='n')
-  drawSpecialPoints(special_points, special_points_color)
+  drawSpecialPoints(special_points, special_points_color, input_date_format)
 
   if(!is.null(title_string)) { mtext(side=3, line=1.2, cex=1.6, text=title_string, col="darkorange4") }
   if(!is.null(y_axis_label)) { mtext(side=2, line=3.4, cex=1.3, text=y_axis_label, col="darkorange4") }
@@ -105,26 +105,7 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_ran
 }
 
 dumpOpt <- function(opt) {
-  cat("generating graph to file:      ", opt$output_filename, "\n")
-  cat("using data file:               ", opt$csv_filename, "\n")
-  cat("using special points file:     ", opt$special_points_filename, "\n")
-  cat("special points color:          ", opt$special_points_color, "\n")
-  cat("graph title:                   ", opt$title, "\n")
-  cat("y axis title:                  ", opt$y_title, "\n")
-  cat("y axis unit:                   ", opt$y_unit, "\n")
-  cat("smoothness:                    ", opt$smoothness, "\n")
-  cat("width:                         ", opt$width, "\n")
-  cat("height:                        ", opt$height, "\n")
-  cat("x_spacing:                     ", opt$x_spacing, "\n")
-  cat("point_color:                   ", opt$point_color, "\n")
-  cat("sunday_point_color:            ", opt$sunday_point_color, "\n")
-  cat("axis_color:                    ", opt$axis_color, "\n")
-  cat("show_gridlines:                ", opt$show_gridlines, "\n")
-  cat("remove_outliers:               ", opt$remove_outliers, "\n")
-  cat("trim_to_week:                  ", opt$trim_to_week, "\n")
-  cat("input_date_format:             ", opt$input_date_format, "\n")
-  cat("y_range:                       ", opt$y_range, "\n")
-  cat("x_range:                       ", opt$x_range, "\n")
+  print(opt)
 }
 
 usage <- function(spec) {
