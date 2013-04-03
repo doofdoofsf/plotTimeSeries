@@ -39,7 +39,7 @@ If your R binary is somewhere other than `/usr/bin` you'll need to edit the firs
           --y_title                    The title shown on the y axis of the graph
           --y_unit                     A string appended to the y axis values e.g. MM
           --y_range                    Manually set Y axis limits e.g. 10:1000
-          --x_range                    Manually set Y axis limits e.g. 04/27/2012:05/20/2013
+          --x_range                    Manually set X axis limits e.g. 04/27/2012:05/20/2013
           --x_spacing                  How the x-axis is spaced e.g. day, 3 days, week, month, 2 weeks, 2 months
           --point_color                The color to draw points in
           --sunday_point_color         The color to draw sunday points in
