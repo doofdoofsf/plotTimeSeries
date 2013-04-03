@@ -82,7 +82,8 @@ drawAxesAndGridlines <- function(date_sequence, y_sequence, y_axis_unit, show_gr
 }
 
 plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_range, filename, title, y_axis_label, y_axis_unit, point_color, sunday_point_color, show_gridlines, remove_outliers, axis_color, trim_to_week, input_date_format, special_points, special_points_color) { 
-  if(!is.null(title)) { title_string = sprintf(title, niceDateFormat(x[1]), niceDateFormat(x[length(x)])) } else { title_string = NULL }
+  title_string <- if (!is.null(title)) sprintf(title, niceDateFormat(x[1]), niceDateFormat(x[length(x)])) else NULL
+  
   d <- as.Date(x, input_date_format)
 
   if(remove_outliers) { y <- removeOutliers(y) }
@@ -227,22 +228,8 @@ kpi_data=read.table(opt$csv_filename, sep=",", head=TRUE)
 x <- kpi_data$date
 y <- kpi_data$value
 
-if (!is.null(opt$special_points_filename)) {
-  special_points = read.table(opt$special_points_filename, sep=",", head=TRUE)
-} else {
-  special_points = NULL
-}
-
-if (!is.null(opt$y_range)) {
-  y_range = as.integer(unlist(strsplit(opt$y_range,':')))
-} else {
-  y_range = NULL
-}
-
-if (!is.null(opt$x_range)) {
-  x_range = as.Date(unlist(strsplit(opt$x_range,':')), opt$input_date_format)
-} else {
-  x_range = NULL
-}
+special_points <- if (!is.null(opt$special_points_filename)) read.table(opt$special_points_filename, sep=",", head=TRUE) else NULL
+y_range <- if (!is.null(opt$y_range)) as.integer(unlist(strsplit(opt$y_range,':'))) else NULL
+x_range <- if (!is.null(opt$x_range)) as.Date(unlist(strsplit(opt$x_range,':')), opt$input_date_format) else NULL
 
 plotGraph(x, y, opt$width, opt$height, opt$x_spacing, opt$smoothness, x_range, y_range, opt$output_filename, opt$title, opt$y_title, opt$y_unit, opt$point_color, opt$sunday_point_color, opt$show_gridlines, opt$remove_outliers, opt$axis_color, opt$trim_to_week, opt$input_date_format, special_points, opt$special_points_color)
