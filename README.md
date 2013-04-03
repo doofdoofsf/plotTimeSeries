@@ -96,6 +96,7 @@ Example graphs are shown below. These are produced by from the data in the `test
 
 #### A graph showing revenue with targets called out
 ![registrations by time](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue_targets.png)
+
     plot_time_series --verbose --width=1200 --height=700 --x_spacing=week --csv_filename=test_data/acme_revenue.csv 
       --output_filename=output/acme_revenue_targets.png --show_gridlines --title="Acme Revenue: %s to %s" --remove_outliers 
       --special_points_filename=test_data/acme_revenue_targets.csv --special_points_color=cornflowerblue --point_color=gray80 
