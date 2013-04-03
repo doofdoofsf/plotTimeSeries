@@ -9,6 +9,6 @@ rm output/acme_registrations*.png output/acme_revenue*.png
 
 ../plot_time_series --verbose --width=500 --height=400 --x_spacing="2 months" --csv_filename=test_data/acme_revenue.csv --output_filename=output/acme_revenue_thumb.png --point_color=gray80 --sunday_point_color=gray80 --remove_outliers --smoothness=0.8
 
-../plot_time_series --verbose --width=1200 --height=700 --x_spacing=week --csv_filename=test_data/acme_revenue.csv --output_filename=output/acme_revenue_targets.png --show_gridlines --title="Acme Revenue: %s to %s" --remove_outliers --special_points_filename=test_data/acme_revenue_targets.csv --special_points_color=blue
+../plot_time_series --verbose --width=1200 --height=700 --x_spacing=week --csv_filename=test_data/acme_revenue.csv --output_filename=output/acme_revenue_targets.png --show_gridlines --title="Acme Revenue: %s to %s" --remove_outliers --special_points_filename=test_data/acme_revenue_targets.csv --special_points_color=cornflowerblue --point_color=gray80 --sunday_point_color=gray80
 
 open output/acme_revenue*.png output/acme_registrations*.png
