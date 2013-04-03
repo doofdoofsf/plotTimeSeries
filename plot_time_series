@@ -38,13 +38,11 @@ trimDateRange <- function(start_date, end_date) {
   first_sunday <- which(weekdays(head(my_days, 7)) == "Sunday")
   last_sunday <- length(my_days) - 7 + which(weekdays(tail(my_days, 7)) == "Sunday")
   trimmed_date_range <- my_days[first_sunday:last_sunday]
-  return(trimmed_date_range)
 }
 
 niceDateFormat <- function(date_string) {
   d <- as.Date(date_string, "%m/%d/%Y")
   pretty_date_string = strftime(d, format="%d%b%y")
-  return(pretty_date_string)
 }
 
 setMargins <- function(title_string, y_axis_label, axis_color) {
@@ -57,7 +55,6 @@ setMargins <- function(title_string, y_axis_label, axis_color) {
   axis_label_margin_line = 1
   axis_line_margin_line = 0
   par(mar = c(bottom_margin, left_margin, top_margin, right_margin), mgp = c(title_margin_line, axis_label_margin_line, axis_line_margin_line), col.axis = axis_color)
-
 }
 
 drawSpecialPoints <- function(special_points, special_points_color) {
@@ -204,22 +201,22 @@ spec = matrix(c(
 opt = getopt(spec)
 
 # set some reasonable defaults for the options that are needed,
-if ( !is.null(opt$help) ) { usage(spec) }
-if ( is.null(opt$smoothness ) ) { opt$smoothness = 0.3 }
-if ( is.null(opt$width ) ) { opt$width = 1150 }
-if ( is.null(opt$height ) ) { opt$height = 640 }
-if ( is.null(opt$x_spacing ) ) { opt$x_spacing = "week" }
-if ( is.null(opt$point_color ) ) { opt$point_color = "black" }
-if ( is.null(opt$input_date_format ) ) { opt$input_date_format = "%m/%d/%Y" }
-if ( is.null(opt$sunday_point_color ) ) { opt$sunday_point_color = "red" }
-if ( is.null(opt$axis_color ) ) { opt$axis_color = "gray30" }
-if ( is.null(opt$show_gridlines ) ) { opt$show_gridlines = FALSE }
-if ( is.null(opt$remove_outliers ) ) { opt$remove_outliers = FALSE }
-if ( is.null(opt$trim_to_week ) ) { opt$trim_to_week = FALSE }
-if ( is.null(opt$verbose ) ) { opt$verbose = FALSE }
-if ( is.null(opt$csv_filename) ) { usage(spec) }
-if ( is.null(opt$output_filename) ) { usage(spec) }
-if ( is.null(opt$special_points_color) ) { opt$special_points_color = "brown2" }
+if (!is.null(opt$help)) { usage(spec) }
+if (is.null(opt$smoothness)) { opt$smoothness = 0.3 }
+if (is.null(opt$width)) { opt$width = 1150 }
+if (is.null(opt$height)) { opt$height = 640 }
+if (is.null(opt$x_spacing)) { opt$x_spacing = "week" }
+if (is.null(opt$point_color)) { opt$point_color = "black" }
+if (is.null(opt$input_date_format)) { opt$input_date_format = "%m/%d/%Y" }
+if (is.null(opt$sunday_point_color)) { opt$sunday_point_color = "red" }
+if (is.null(opt$axis_color)) { opt$axis_color = "gray30" }
+if (is.null(opt$show_gridlines)) { opt$show_gridlines = FALSE }
+if (is.null(opt$remove_outliers)) { opt$remove_outliers = FALSE }
+if (is.null(opt$trim_to_week)) { opt$trim_to_week = FALSE }
+if (is.null(opt$verbose)) { opt$verbose = FALSE }
+if (is.null(opt$csv_filename)) { usage(spec) }
+if (is.null(opt$output_filename)) { usage(spec) }
+if (is.null(opt$special_points_color)) { opt$special_points_color = "brown2" }
 
 if (opt$verbose) { dumpOpt(opt) }
 
