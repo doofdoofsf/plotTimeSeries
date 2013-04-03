@@ -43,4 +43,7 @@ Example graphs are shown below. These are produced by from the data in the \`tes
 
 #### The same graph with a bit more detail
 ![registrations by time](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations.png)
+
+#### A graph showing revenue with targets called out
+![registrations by time](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue_targets.png)
 EOT

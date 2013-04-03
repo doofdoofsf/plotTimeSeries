@@ -18,7 +18,7 @@ If your R binary is somewhere other than `/usr/bin` you'll need to edit the firs
           plot_time_series
     
     SYNOPSIS
-           Usage: ../plot_time_series [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-trim_to_week|T]] [-[-csv_filename|c] <character>] [-[-output_filename|f] <character>] [-[-input_date_format|d] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-x_spacing|x] [<character>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
+           Usage: ../plot_time_series [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-trim_to_week|T]] [-[-csv_filename|c] <character>] [-[-special_points_filename|S] [<character>]] [-[-special_points_color|C] [<character>]] [-[-output_filename|f] <character>] [-[-input_date_format|d] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-y_range|Y] [<character>]] [-[-x_range|X] [<character>]] [-[-x_spacing|x] [<character>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
     
     DESCRIPTION
           The plot_time_series is a simple utility for plotting a time series graph using R.
@@ -28,23 +28,27 @@ If your R binary is somewhere other than `/usr/bin` you'll need to edit the firs
     OPTIONS
           The options are as follows:
     
-          --verbose            Get a little chatty?
-          --width              The width of the graph in pixels
-          --height             The height of the graph in pixels
-          --csv_filename       A CSV containing input data with columns date,value (example below)
-          --output_filename    The file that the graph is written to
-          --title              The title shown above the graph
-          --y_title            The title shown on the y axis of the graph
-          --y_unit             A string appended to the y axis values e.g. MM
-          --x_spacing          How the x-axis is spaced e.g. day, 3 days, week, month, 2 weeks, 2 months
-          --point_color        The color to draw points in
-          --sunday_point_color The color to draw sunday points in
-          --input_date_format  The format of the date in the datafile, default is "%m/%d/%Y"
-          --axis_color         The color to use for the axis
-          --smoothness         How much to smooth the LOESS fit line. Float between 0 and 1
-          --remove_outliers    Automagically remove outlying points?
-          --trim_to_week       Trim the X axis to whole weeks?
-          --show_gridlines     Show gridlines?
+          --verbose                    Get a little chatty?
+          --width                      The width of the graph in pixels
+          --height                     The height of the graph in pixels
+          --csv_filename               A CSV containing input data with columns date,value (example below)
+          --output_filename            The file that the graph is written to
+          --special_points_filename    A file containing special points e.g. milestones or targets
+          --special_points_color       The color of the special points
+          --title                      The title shown above the graph
+          --y_title                    The title shown on the y axis of the graph
+          --y_unit                     A string appended to the y axis values e.g. MM
+          --y_range                    Manually set Y axis limits e.g. 10:1000
+          --x_range                    Manually set Y axis limits e.g. 04/27/2012:05/20/2013
+          --x_spacing                  How the x-axis is spaced e.g. day, 3 days, week, month, 2 weeks, 2 months
+          --point_color                The color to draw points in
+          --sunday_point_color         The color to draw sunday points in
+          --input_date_format          The format of the date in the datafile, default is "%m/%d/%Y"
+          --axis_color                 The color to use for the axis
+          --smoothness                 How much to smooth the LOESS fit line. Float between 0 and 1
+          --remove_outliers            Automagically remove outlying points?
+          --trim_to_week               Trim the X axis to whole weeks? (x grid goes Sunday to Sunday)
+          --show_gridlines             Show gridlines?
     
     EXAMPLES
           $ plot_time_series --width=800 --height=400 --x_spacing=month --csv_filename=test_data/unbranded_organic_registrations.csv --output_filename=output/unbranded_organic_registrations.png --title="Unbranded Organic Registrations: %s to %s" --y_title="Number Registrations"
@@ -81,3 +85,6 @@ Example graphs are shown below. These are produced by from the data in the `test
 
 #### The same graph with a bit more detail
 ![registrations by time](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations.png)
+
+#### A graph showing revenue with targets called out
+![registrations by time](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue_targets.png)
