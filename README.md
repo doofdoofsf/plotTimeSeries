@@ -83,8 +83,14 @@ Example graphs are shown below. These are produced by from the data in the `test
 #### A simple graph showing registrations by time
 ![registrations by time](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations_thumb.png)
 
+`plot_time_series --verbose --width=500 --height=400 --x_spacing=month --csv_filename=test_data/acme_registrations.csv --output_filename=output/acme_registrations_thumb.png --point_color=gray80 --sunday_point_color=gray80 --remove_outliers --smoothness=0.8`
+
 #### The same graph with a bit more detail
 ![registrations by time](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations.png)
 
+`plot_time_series --verbose --width=1200 --height=700 --x_spacing=week --csv_filename=test_data/acme_registrations.csv --output_filename=output/acme_registrations.png --show_gridlines --title="Acme Registrations: %s to %s" --y_title="Number Registrations" --remove_outliers`
+
 #### A graph showing revenue with targets called out
 ![registrations by time](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue_targets.png)
+
+`plot_time_series --verbose --width=1200 --height=700 --x_spacing=week --csv_filename=test_data/acme_revenue.csv --output_filename=output/acme_revenue_targets.png --show_gridlines --title="Acme Revenue: %s to %s" --remove_outliers --special_points_filename=test_data/acme_revenue_targets.csv --special_points_color=blue`
