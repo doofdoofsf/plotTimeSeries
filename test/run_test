@@ -27,3 +27,5 @@ then
 else
   echo "Some tests FAILED"
 fi
+
+exit ${global_result}
