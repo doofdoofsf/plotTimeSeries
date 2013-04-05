@@ -23,9 +23,9 @@ done < tests.txt
 echo
 if test ${global_result} -eq 0
 then
-  echo " ** All tests passed"
+  echo "  ** All tests passed"
 else
-  echo " ** Some tests FAILED"
+  echo "  ** Some tests FAILED"
 fi
 
 exit ${global_result}

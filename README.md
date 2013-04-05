@@ -70,7 +70,10 @@ There is a test directory with some lovely testy stuff in it:
 
     test/test_data - a directory with some test csv files in it
     test/output    - a directory that the test script dumps images into
-    run_test       - a bash script that calls plot_time_series to generate a few graphs
+    run_test       - a bash script that runs the tests
+    tests.txt      - the test definitions
+
+Go and run the tests and make sure everything passes:
 
     $ cd test
     $ ./run_test 
@@ -81,9 +84,7 @@ There is a test directory with some lovely testy stuff in it:
       * running test "revenue graph with targets" ... passed
       * running test "registrations thumb" ... passed
     
-     ** All tests passed
-    $ ls output/*.png
-
+      ** All tests passed
 ## Examples
 
 Example graphs are shown below. These are produced by from the data in the `test` directory
