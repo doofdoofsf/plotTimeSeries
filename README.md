@@ -77,12 +77,12 @@ Go and run the tests and make sure everything passes:
 
     $ cd test
     $ ./run_test 
-      * running test "registrations thumb" ... passed
-      * running test "registrations graph" ... passed
-      * running test "revenue thumb" ... passed
-      * running test "revenue graph" ... passed
-      * running test "revenue graph with targets" ... passed
-      * running test "registrations thumb" ... passed
+      * running test "registrations thumb" ...  passed
+      * running test "registrations graph" ...  passed
+      * running test "revenue thumb" ...  passed
+      * running test "revenue graph" ...  passed
+      * running test "revenue graph with targets" ...  passed
+      * running test "registrations thumb" ...  passed
     
       ** All tests passed
 ## Examples
