@@ -8,7 +8,7 @@ while read test_def; do
   test=`echo $test_def | cut -f4 -d,`
   global_result=0
 
-  echo -n "running test ${name} ... "
+  echo -n "  * running test ${name} ... "
   eval ${test} "\--output_filename" "${output_file}"
   if test $? -ne 0
   then
@@ -23,9 +23,9 @@ done < tests.txt
 echo
 if test ${global_result} -eq 0
 then
-  echo "All tests passed"
+  echo " ** All tests passed"
 else
-  echo "Some tests FAILED"
+  echo " ** Some tests FAILED"
 fi
 
 exit ${global_result}

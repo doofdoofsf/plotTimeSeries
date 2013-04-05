@@ -32,6 +32,11 @@ There is a test directory with some lovely testy stuff in it:
 
     $ cd test
     $ ./run_test 
+EOT
+
+(cd ../test ; ./run_test) | sed "s/^/    /"
+
+cat << EOT
     $ ls output/*.png
 
 EOT

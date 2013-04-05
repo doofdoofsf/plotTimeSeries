@@ -74,6 +74,14 @@ There is a test directory with some lovely testy stuff in it:
 
     $ cd test
     $ ./run_test 
+      * running test "registrations thumb" ... passed
+      * running test "registrations graph" ... passed
+      * running test "revenue thumb" ... passed
+      * running test "revenue graph" ... passed
+      * running test "revenue graph with targets" ... passed
+      * running test "registrations thumb" ... passed
+    
+     ** All tests passed
     $ ls output/*.png
 
 ## Examples
