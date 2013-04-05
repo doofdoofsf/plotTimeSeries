@@ -114,7 +114,7 @@ Example graphs are shown below. These are produced by from the data in the `test
 
      ../plot_time_series --width=500 --height=400 --x_spacing="2 months" 
      --csv_filename=test_data/acme_revenue.csv --point_color=gray80 --sunday_point_color=gray80 
-     --remove_outliers --smoothness=0.8
+     --remove_outliers --smoothness=0.8 --y_line="35000:Target"
 
 #### A detailed graph showing revenue by time
 !["revenue graph"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue.png)
