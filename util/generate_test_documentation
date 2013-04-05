@@ -6,7 +6,7 @@ echo "Example graphs are shown below. These are produced by from the data in the
 
 while read test_def; do
   name=`echo $test_def | cut -f1 -d,`
-  description=`echo $test_def | cut -f2 -d,`
+  description=`echo $test_def | cut -f2 -d, | tr -d \"`
   output_file=`echo $test_def | cut -f3 -d,`
   test=`echo $test_def | cut -f4 -d,`
   
