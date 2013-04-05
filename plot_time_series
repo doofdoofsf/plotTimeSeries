@@ -47,14 +47,12 @@ niceDateFormat <- function(date_string) {
 
 setMargins <- function(title_string, y_axis_label, axis_color) {
   # http://stat.ethz.ch/R-manual/R-patched/library/graphics/html/par.html
-  bottom_margin = 5
-  top_margin <- if (is.null(title_string)) 1 else 4
-  left_margin <- if (is.null(y_axis_label)) 5 else 6
-  right_margin = 2
-  title_margin_line = 3
-  axis_label_margin_line = 1
-  axis_line_margin_line = 0
-  par(mar = c(bottom_margin, left_margin, top_margin, right_margin), mgp = c(title_margin_line, axis_label_margin_line, axis_line_margin_line), col.axis = axis_color)
+  # margins: bottom, left, top, right
+  margins = c(5, if (is.null(y_axis_label)) 5 else 6, if (is.null(title_string)) 1 else 4, 3)
+  # margin lines: title_margin_line, axis_label_margin_line, axis_line_margin_line
+  margin_lines = c(3,1,0)
+  
+  par(mar = margins, mgp = margin_lines, col.axis = axis_color)
 }
 
 drawSpecialPoints <- function(special_points, special_points_color, input_date_format) {
