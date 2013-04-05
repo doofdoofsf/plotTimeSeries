@@ -12,6 +12,8 @@ To install the `getopt` package, fire up R (type R in your terminal) and type in
 
 If your R binary is somewhere other than `/usr/bin` you'll need to edit the first line of `plot_time_series` to point it at the correct location. Do `which R` to find it.
 
+You can use plot_time_series anywhere you can use R, but the tests are *nix flavored.
+
 ## Usage
 
     NAME
@@ -125,9 +127,10 @@ Example graphs are shown below. These are produced by from the data in the `test
      --remove_outliers --special_points_filename=test_data/acme_revenue_targets.csv 
      --special_points_color=cornflowerblue --point_color=gray80 --sunday_point_color=gray80
 
-#### A simple graph showing registrations by time from August to September
+#### A simple graph showing registrations by time from April to September
 !["registrations thumb"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations_thumb_dates.png)
 
      ../plot_time_series --width=500 --height=400 --x_spacing=month 
-     --csv_filename=test_data/acme_registrations.csv --point_color=gray80 --sunday_point_color=gray80 
-     --remove_outliers --smoothness=0.8 --x_range=04/01/2012:09/01/2012 --y_range=50:250
+     --csv_filename=test_data/acme_registrations.csv --title="April to September" --point_color=gray80 
+     --sunday_point_color=gray80 --remove_outliers --smoothness=0.2 --x_range=04/01/2012:09/01/2012 
+     --y_range=50:250

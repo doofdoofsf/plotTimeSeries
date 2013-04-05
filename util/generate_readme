@@ -14,6 +14,8 @@ To install the \`getopt\` package, fire up R (type R in your terminal) and type 
 
 If your R binary is somewhere other than \`/usr/bin\` you'll need to edit the first line of \`plot_time_series\` to point it at the correct location. Do \`which R\` to find it.
 
+You can use plot_time_series anywhere you can use R, but the tests are *nix flavored.
+
 ## Usage
 
 EOT
