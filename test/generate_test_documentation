@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo "## Examples"
+echo
+echo "Example graphs are shown below. These are produced by from the data in the \`test\` directory"
+
+while read test_def; do
+  name=`echo $test_def | cut -f1 -d,`
+  description=`echo $test_def | cut -f2 -d,`
+  output_file=`echo $test_def | cut -f3 -d,`
+  test=`echo $test_def | cut -f4 -d,`
+  
+  echo
+  echo "#### ${description}"
+  echo "![${name}](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/${output_file})"
+  echo
+  echo "`echo $test | fold -s -w90 | sed "s/^/     /"`"
+
+done < ../test/tests.txt

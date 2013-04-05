@@ -4,11 +4,12 @@ rm output/*.png 2> /dev/null
 
 while read test_def; do
   name=`echo $test_def | cut -f1 -d,`
-  test=`echo $test_def | cut -f2 -d,`
+  output_file=`echo $test_def | cut -f3 -d,`
+  test=`echo $test_def | cut -f4 -d,`
   global_result=0
 
   echo -n "running test ${name} ... "
-  eval ${test}
+  eval ${test} "\--output_filename" "${output_file}"
   if test $? -ne 0
   then
     echo "FAILED"
@@ -26,5 +27,3 @@ then
 else
   echo "Some tests FAILED"
 fi
-
-open output/*.png
