@@ -22,7 +22,7 @@ You can use plot_time_series anywhere you can use R, but the tests are *nix flav
           plot_time_series
     
     SYNOPSIS
-           Usage: ../plot_time_series [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-trim_to_week|T]] [-[-csv_filename|c] <character>] [-[-special_points_filename|S] [<character>]] [-[-special_points_color|C] [<character>]] [-[-output_filename|f] <character>] [-[-input_date_format|d] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-y_range|Y] [<character>]] [-[-x_range|X] [<character>]] [-[-x_spacing|x] [<character>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
+           Usage: ../plot_time_series [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-trim_to_week|T]] [-[-csv_filename|c] <character>] [-[-special_points_filename|S] [<character>]] [-[-special_points_color|C] [<character>]] [-[-output_filename|f] <character>] [-[-input_date_format|d] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-y_range|Y] [<character>]] [-[-x_range|X] [<character>]] [-[-x_spacing|x] [<character>]] [-[-y_line|L] [<character>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
     
     DESCRIPTION
           The plot_time_series is a simple utility for plotting a time series graph using R.
@@ -45,6 +45,7 @@ You can use plot_time_series anywhere you can use R, but the tests are *nix flav
           --y_range                    Manually set Y axis limits e.g. 10:1000
           --x_range                    Manually set X axis limits e.g. 04/27/2012:05/20/2013
           --x_spacing                  How the x-axis is spaced e.g. day, 3 days, week, month, 2 weeks, 2 months
+          --y_line                     Add a horizontal labeled line at a Y value e.g. "10,000:Target for 2012"
           --point_color                The color to draw points in
           --sunday_point_color         The color to draw sunday points in
           --input_date_format          The format of the date in the datafile, default is "%m/%d/%Y"
@@ -85,8 +86,9 @@ Go and run the tests and make sure everything passes:
       * running test "registrations graph" ...  passed
       * running test "revenue thumb" ...  passed
       * running test "revenue graph" ...  passed
+      * running test "revenue graph with target line" ...  passed
       * running test "revenue graph with targets" ...  passed
-      * running test "registrations thumb" ...  passed
+      * running test "registrations thumb with x/y bounds" ...  passed
     
       ** All tests passed
 ## Examples
@@ -121,6 +123,13 @@ Example graphs are shown below. These are produced by from the data in the `test
      --csv_filename=test_data/acme_revenue.csv --show_gridlines --title="Acme Revenue: %s to %s" 
      --remove_outliers
 
+#### A detailed graph showing revenue by time with multiple target lines with custom colors
+!["revenue graph with target line"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue_target_line.png)
+
+     ../plot_time_series --width=1200 --height=700 --x_spacing=week 
+     --csv_filename=test_data/acme_revenue.csv --title="Acme Revenue: %s to %s" --remove_outliers 
+     --y_line="25000:Target for 2012:gold3!36000:Target for 2013:gold2!42000:Target for 2014:gold1"
+
 #### A detailed graph showing revenue by time with targets
 !["revenue graph with targets"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue_targets.png)
 
@@ -130,7 +139,7 @@ Example graphs are shown below. These are produced by from the data in the `test
      --special_points_color=cornflowerblue --point_color=gray80 --sunday_point_color=gray80
 
 #### A simple graph showing registrations by time from April to September
-!["registrations thumb"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations_thumb_dates.png)
+!["registrations thumb with x/y bounds"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations_thumb_dates.png)
 
      ../plot_time_series --width=500 --height=400 --x_spacing=month 
      --csv_filename=test_data/acme_registrations.csv --title="April to September" --point_color=gray80 
