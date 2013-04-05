@@ -1,4 +1,7 @@
 #!/bin/bash
+bldred=${txtbld}$(tput setaf 1)
+bldgrn=${txtbld}$(tput setaf 2)
+txtrst=$(tput sgr0)
 
 rm output/*.png 2> /dev/null
 
@@ -12,10 +15,10 @@ while read test_def; do
   eval ${test} "\--output_filename" "${output_file}"
   if test $? -ne 0
   then
-    echo "FAILED"
+    echo "${bldred} FAILED${txtrst}"
     global_result=1
   else
-    echo "passed"
+    echo "${bldgrn} passed${txtrst}"
   fi
  
 done < tests.txt
