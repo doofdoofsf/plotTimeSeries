@@ -225,14 +225,11 @@ processArgs <- function() {
 plotGraphFromOptions <- function(opt) {
   kpi_data=read.table(opt$csv_filename, sep=",", head=TRUE)
 
-  x <- kpi_data$date
-  y <- kpi_data$value
-
   special_points <- if (!is.null(opt$special_points_filename)) read.table(opt$special_points_filename, sep=",", head=TRUE) else NULL
   y_range <- if (!is.null(opt$y_range)) as.integer(unlist(strsplit(opt$y_range,':'))) else NULL
   x_range <- if (!is.null(opt$x_range)) as.Date(unlist(strsplit(opt$x_range,':')), opt$input_date_format) else NULL
 
-  plotGraph(x, y, opt$width, opt$height, opt$x_spacing, opt$smoothness, x_range, y_range, opt$output_filename,
+  plotGraph(kpi_data$date, kpi_data$value, opt$width, opt$height, opt$x_spacing, opt$smoothness, x_range, y_range, opt$output_filename,
    opt$title, opt$y_title, opt$y_unit, opt$point_color, opt$sunday_point_color, opt$show_gridlines, opt$remove_outliers, 
    opt$axis_color, opt$trim_to_week, opt$input_date_format, special_points, opt$special_points_color, opt$y_line)
 }
