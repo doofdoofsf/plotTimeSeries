@@ -15,14 +15,12 @@
 #
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 #
-# plot_time_series - A simple utility for plotting a time_series graph
 #
-#     Version:    1.0:     Created:  John D Quinn, http://www.johnandcailin.com/john
+#   plot_time_series - A simple utility for plotting a time_series graph
 #
-
-require('getopt', quietly=TRUE);
+#   Version:    1.0:     Created:  John D Quinn, http://www.johnandcailin.com/john
+#
 
 removeOutliers <- function(x, na.rm = TRUE, ...) {
   qnt <- quantile(x, probs=c(.25, .75), na.rm = na.rm, ...)
@@ -78,7 +76,7 @@ drawAxesAndGridlines <- function(date_sequence, y_sequence, y_axis_unit, show_gr
 
 drawYLine <- function(y_line, x_start, x_end) {
   default_color <- "red"
-  lines=(strsplit(opt$y_line,'!'))
+  lines=(strsplit(y_line,'!'))
   for(line in lines[[1]]) {
     args=(strsplit(line,':'))
     y_val <- as.integer(args[[1]][1])
@@ -89,7 +87,9 @@ drawYLine <- function(y_line, x_start, x_end) {
   }
 }
 
-plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_range, filename, title, y_axis_label, y_axis_unit, point_color, sunday_point_color, show_gridlines, remove_outliers, axis_color, trim_to_week, input_date_format, special_points, special_points_color, y_line) { 
+plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_range, filename, title, 
+  y_axis_label, y_axis_unit, point_color, sunday_point_color, show_gridlines, remove_outliers, axis_color, 
+  trim_to_week, input_date_format, special_points, special_points_color, y_line) { 
   title_string <- if (!is.null(title)) sprintf(title, niceDateFormat(x[1]), niceDateFormat(x[length(x)])) else NULL
   
   d <- as.Date(x, input_date_format)
@@ -100,7 +100,8 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_ran
 
   setMargins(title_string, y_axis_label, axis_color)
 
-  scatter.smooth(d, y, family="gaussian", col=ifelse((format(d, format="%A")=="Sunday"), sunday_point_color, point_color), xlab="", ylab="", ylim=y_range, xlim=x_range, span=smoothness, xaxt='n', yaxt='n')
+  scatter.smooth(d, y, family="gaussian", col=ifelse((format(d, format="%A")=="Sunday"), 
+    sunday_point_color, point_color), xlab="", ylab="", ylim=y_range, xlim=x_range, span=smoothness, xaxt='n', yaxt='n')
   drawSpecialPoints(special_points, special_points_color, input_date_format)
 
   if(!is.null(title_string)) { mtext(side=3, line=1.2, cex=1.6, text=title_string, col="darkorange4") }
@@ -114,10 +115,6 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_ran
 
   # send output from dev.off to garbage since it's annoying
   garbage <- dev.off()
-}
-
-dumpOpt <- function(opt) {
-  print(opt)
 }
 
 usage <- function(spec) {
@@ -165,63 +162,75 @@ usage <- function(spec) {
   q(status=1);
 }
 
-# define the command line option structure
-spec = matrix(c(
-  'verbose', 'v', 0, "logical",
-  'help', 'h', 0, "logical",
-  'show_gridlines', 'g', 0, "logical",
-  'remove_outliers', 'o', 0, "logical",
-  'trim_to_week', 'T', 0, "logical",
-  'csv_filename', 'c', 1, "character",
-  'special_points_filename', 'S', 2, "character",
-  'special_points_color', 'C', 2, "character",
-  'output_filename', 'f', 1, "character",
-  'input_date_format', 'd', 1, "character",
-  'title', 't', 1, "character",
-  'y_title', 'y', 1, "character",
-  'y_unit', 's', 1, "character",
-  'y_range', 'Y', 2, "character",
-  'x_range', 'X', 2, "character",
-  'x_spacing', 'x', 2, "character",
-  'y_line', 'L', 2, "character",
-  'smoothness', 'm', 2, "double",
-  'width', 'w', 2, "integer",
-  'height', 'u', 2, "integer",
-  'point_color', 'p', 2, "character",
-  'sunday_point_color', 'z', 2, "character",
-  'axis_color', 'a', 2, "character"
-), byrow=TRUE, ncol=4)
+processArgs <- function() {
+  require('getopt', quietly=TRUE);
 
-# http://cran.r-project.org/web/packages/getopt/getopt.pdf
-opt = getopt(spec)
+  # define the command line option structure
+  spec = matrix(c(
+    'verbose', 'v', 0, "logical",
+    'help', 'h', 0, "logical",
+    'show_gridlines', 'g', 0, "logical",
+    'remove_outliers', 'o', 0, "logical",
+    'trim_to_week', 'T', 0, "logical",
+    'csv_filename', 'c', 1, "character",
+    'special_points_filename', 'S', 2, "character",
+    'special_points_color', 'C', 2, "character",
+    'output_filename', 'f', 1, "character",
+    'input_date_format', 'd', 1, "character",
+    'title', 't', 1, "character",
+    'y_title', 'y', 1, "character",
+    'y_unit', 's', 1, "character",
+    'y_range', 'Y', 2, "character",
+    'x_range', 'X', 2, "character",
+    'x_spacing', 'x', 2, "character",
+    'y_line', 'L', 2, "character",
+    'smoothness', 'm', 2, "double",
+    'width', 'w', 2, "integer",
+    'height', 'u', 2, "integer",
+    'point_color', 'p', 2, "character",
+    'sunday_point_color', 'z', 2, "character",
+    'axis_color', 'a', 2, "character"
+  ), byrow=TRUE, ncol=4)
 
-# set some reasonable defaults for the options that are needed,
-if (!is.null(opt$help)) { usage(spec) }
-if (is.null(opt$smoothness)) { opt$smoothness = 0.3 }
-if (is.null(opt$width)) { opt$width = 1150 }
-if (is.null(opt$height)) { opt$height = 640 }
-if (is.null(opt$x_spacing)) { opt$x_spacing = "week" }
-if (is.null(opt$point_color)) { opt$point_color = "black" }
-if (is.null(opt$input_date_format)) { opt$input_date_format = "%m/%d/%Y" }
-if (is.null(opt$sunday_point_color)) { opt$sunday_point_color = "red" }
-if (is.null(opt$axis_color)) { opt$axis_color = "gray30" }
-if (is.null(opt$show_gridlines)) { opt$show_gridlines = FALSE }
-if (is.null(opt$remove_outliers)) { opt$remove_outliers = FALSE }
-if (is.null(opt$trim_to_week)) { opt$trim_to_week = FALSE }
-if (is.null(opt$verbose)) { opt$verbose = FALSE }
-if (is.null(opt$csv_filename)) { usage(spec) }
-if (is.null(opt$output_filename)) { usage(spec) }
-if (is.null(opt$special_points_color)) { opt$special_points_color = "brown2" }
+  # http://cran.r-project.org/web/packages/getopt/getopt.pdf
+  opt = getopt(spec)
 
-if (opt$verbose) { dumpOpt(opt) }
+  # set some reasonable defaults for the options that are needed,
+  if (!is.null(opt$help)) { usage(spec) }
+  if (is.null(opt$smoothness)) { opt$smoothness = 0.3 }
+  if (is.null(opt$width)) { opt$width = 1150 }
+  if (is.null(opt$height)) { opt$height = 640 }
+  if (is.null(opt$x_spacing)) { opt$x_spacing = "week" }
+  if (is.null(opt$point_color)) { opt$point_color = "black" }
+  if (is.null(opt$input_date_format)) { opt$input_date_format = "%m/%d/%Y" }
+  if (is.null(opt$sunday_point_color)) { opt$sunday_point_color = "red" }
+  if (is.null(opt$axis_color)) { opt$axis_color = "gray30" }
+  if (is.null(opt$show_gridlines)) { opt$show_gridlines = FALSE }
+  if (is.null(opt$remove_outliers)) { opt$remove_outliers = FALSE }
+  if (is.null(opt$trim_to_week)) { opt$trim_to_week = FALSE }
+  if (is.null(opt$verbose)) { opt$verbose = FALSE }
+  if (is.null(opt$csv_filename)) { usage(spec) }
+  if (is.null(opt$output_filename)) { usage(spec) }
+  if (is.null(opt$special_points_color)) { opt$special_points_color = "brown2" }
 
-kpi_data=read.table(opt$csv_filename, sep=",", head=TRUE)
+  if (opt$verbose) { print(opt) }
 
-x <- kpi_data$date
-y <- kpi_data$value
+  opt
+}
 
-special_points <- if (!is.null(opt$special_points_filename)) read.table(opt$special_points_filename, sep=",", head=TRUE) else NULL
-y_range <- if (!is.null(opt$y_range)) as.integer(unlist(strsplit(opt$y_range,':'))) else NULL
-x_range <- if (!is.null(opt$x_range)) as.Date(unlist(strsplit(opt$x_range,':')), opt$input_date_format) else NULL
+plotGraphFromOptions <- function(opt) {
+  kpi_data=read.table(opt$csv_filename, sep=",", head=TRUE)
 
-plotGraph(x, y, opt$width, opt$height, opt$x_spacing, opt$smoothness, x_range, y_range, opt$output_filename, opt$title, opt$y_title, opt$y_unit, opt$point_color, opt$sunday_point_color, opt$show_gridlines, opt$remove_outliers, opt$axis_color, opt$trim_to_week, opt$input_date_format, special_points, opt$special_points_color, opt$y_line)
+  x <- kpi_data$date
+  y <- kpi_data$value
+
+  special_points <- if (!is.null(opt$special_points_filename)) read.table(opt$special_points_filename, sep=",", head=TRUE) else NULL
+  y_range <- if (!is.null(opt$y_range)) as.integer(unlist(strsplit(opt$y_range,':'))) else NULL
+  x_range <- if (!is.null(opt$x_range)) as.Date(unlist(strsplit(opt$x_range,':')), opt$input_date_format) else NULL
+
+  plotGraph(x, y, opt$width, opt$height, opt$x_spacing, opt$smoothness, x_range, y_range, opt$output_filename,
+   opt$title, opt$y_title, opt$y_unit, opt$point_color, opt$sunday_point_color, opt$show_gridlines, opt$remove_outliers, 
+   opt$axis_color, opt$trim_to_week, opt$input_date_format, special_points, opt$special_points_color, opt$y_line)
+}
+
+plotGraphFromOptions(processArgs())
