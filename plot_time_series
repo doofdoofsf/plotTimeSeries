@@ -151,14 +151,18 @@ usage <- function(spec) {
   cat("      --trim_to_week               Trim the X axis to whole weeks? (x grid goes Sunday to Sunday)\n")
   cat("      --show_gridlines             Show gridlines?\n")
   cat("\nEXAMPLES\n")
-  cat("      $ plot_time_series --width=800 --height=400 --x_spacing=month --csv_filename=test_data/unbranded_organic_registrations.csv --output_filename=output/unbranded_organic_registrations.png --title=\"Unbranded Organic Registrations: %s to %s\" --y_title=\"Number Registrations\"\n\n")
+  cat("      $ plot_time_series --width=800 --height=400 --x_spacing=month --csv_filename=test_data/unbranded_organic_registrations.csv\n")
+  cat("        --output_filename=output/unbranded_organic_registrations.png --title=\"Unbranded Organic Registrations: %s to %s\"\n")
+  cat("        --y_title=\"Number Registrations\"\n")
   cat("\nEXAMPLE INPUT FILE\n")
   cat("      date,value\n")
   cat("      03/06/2012,6347.04\n")
   cat("      03/07/2012,9990.23\n")
   cat("      03/08/2012,6773.41\n")
   cat("\nCOLOR\n")
-  cat("      Available colors documented at: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf\n\n")
+  cat("      Available colors documented at: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf\n")
+  cat("\nDOCUMENTATION\n")
+  cat("      Read the full documentation at: https://github.com/doofdoofsf/plotTimeSeries/blob/master/README.md\n\n")
   q(status=1);
 }
 

@@ -56,8 +56,9 @@ You can use plot_time_series anywhere you can use R, but the tests are *nix flav
           --show_gridlines             Show gridlines?
     
     EXAMPLES
-          $ plot_time_series --width=800 --height=400 --x_spacing=month --csv_filename=test_data/unbranded_organic_registrations.csv --output_filename=output/unbranded_organic_registrations.png --title="Unbranded Organic Registrations: %s to %s" --y_title="Number Registrations"
-    
+          $ plot_time_series --width=800 --height=400 --x_spacing=month --csv_filename=test_data/unbranded_organic_registrations.csv
+            --output_filename=output/unbranded_organic_registrations.png --title="Unbranded Organic Registrations: %s to %s"
+            --y_title="Number Registrations"
     
     EXAMPLE INPUT FILE
           date,value
@@ -67,6 +68,9 @@ You can use plot_time_series anywhere you can use R, but the tests are *nix flav
     
     COLOR
           Available colors documented at: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
+    
+    DOCUMENTATION
+          Read the full documentation at: https://github.com/doofdoofsf/plotTimeSeries/blob/master/README.md
     
 
 ## Testing
