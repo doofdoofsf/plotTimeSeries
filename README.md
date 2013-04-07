@@ -148,5 +148,5 @@ Example graphs are shown below. These are produced from the data in the `test` d
 
      ../plot_time_series --width=500 --height=400 --x_spacing=month 
      --csv_filename=test_data/acme_registrations.csv --title="April to September" --point_color=gray80 
-     --sunday_point_color=gray80 --remove_outliers --smoothness=0.2 --x_range=04/01/2012:09/01/2012 
-     --y_range=50:250
+     --sunday_point_color=cornflowerblue --remove_outliers --smoothness=0.2 
+     --x_range=04/01/2012:09/01/2012 --y_range=50:250
