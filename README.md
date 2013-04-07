@@ -23,7 +23,7 @@ You can use plot_time_series anywhere you can use R, but the tests are *nix flav
           plot_time_series
     
     SYNOPSIS
-           Usage: ../plot_time_series [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-trim_to_week|T]] [-[-csv_filename|c] <character>] [-[-special_points_filename|S] [<character>]] [-[-special_points_color|C] [<character>]] [-[-output_filename|f] <character>] [-[-input_date_format|d] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-y_range|Y] [<character>]] [-[-x_range|X] [<character>]] [-[-x_spacing|x] [<character>]] [-[-y_line|L] [<character>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
+           Usage: ../plot_time_series [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-trim_to_week|T]] [-[-csv_filename|c] <character>] [-[-special_points_filename|S] [<character>]] [-[-special_points_color|C] [<character>]] [-[-output_filename|f] <character>] [-[-input_date_format|d] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-y_prefix|P] <character>] [-[-y_range|Y] [<character>]] [-[-x_range|X] [<character>]] [-[-x_spacing|x] [<character>]] [-[-y_line|L] [<character>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
     
     DESCRIPTION
           The plot_time_series is a simple utility for plotting a time series graph using R.
@@ -43,6 +43,7 @@ You can use plot_time_series anywhere you can use R, but the tests are *nix flav
           --title                      The title shown above the graph
           --y_title                    The title shown on the y axis of the graph
           --y_unit                     A string appended to the y axis values e.g. MM
+          --y_prefix                   A string prepended to the y axis values e.g. $
           --y_range                    Manually set Y axis limits e.g. 10:1000
           --x_range                    Manually set X axis limits e.g. 04/27/2012:05/20/2013
           --x_spacing                  How the x-axis is spaced e.g. day, 3 days, week, month, 2 weeks, 2 months
@@ -119,21 +120,22 @@ Example graphs are shown below. These are produced from the data in the `test` d
 
      ../plot_time_series --width=500 --height=400 --x_spacing="2 months" 
      --csv_filename=test_data/acme_revenue.csv --point_color=gray80 --sunday_point_color=gray80 
-     --remove_outliers --smoothness=0.8 --y_line="35000:Target"
+     --remove_outliers --smoothness=0.8 --y_line="35000:Target" --y_prefix="$"
 
 #### A detailed graph showing revenue by time
 !["revenue graph"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue.png)
 
      ../plot_time_series --width=1200 --height=700 --x_spacing=week 
      --csv_filename=test_data/acme_revenue.csv --show_gridlines --title="Acme Revenue: %s to %s" 
-     --remove_outliers
+     --remove_outliers --y_prefix="$"
 
 #### A detailed graph showing revenue by time with multiple target lines with custom colors
 !["revenue graph with target line"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue_target_line.png)
 
      ../plot_time_series --width=1200 --height=700 --x_spacing=week 
      --csv_filename=test_data/acme_revenue.csv --title="Acme Revenue: %s to %s" --remove_outliers 
-     --y_line="25000:Target for 2012:gold3!36000:Target for 2013:gold2!42000:Target for 2014:gold1"
+     --y_line="25000:Target for 2012:gold3!36000:Target for 2013:gold2!42000:Target for 2014:gold1" 
+     --y_prefix="$"
 
 #### A detailed graph showing revenue by time with targets
 !["revenue graph with targets"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue_targets.png)
@@ -141,7 +143,8 @@ Example graphs are shown below. These are produced from the data in the `test` d
      ../plot_time_series --width=1200 --height=700 --x_spacing=week 
      --csv_filename=test_data/acme_revenue.csv --show_gridlines --title="Acme Revenue: %s to %s" 
      --remove_outliers --special_points_filename=test_data/acme_revenue_targets.csv 
-     --special_points_color=cornflowerblue --point_color=gray80 --sunday_point_color=gray80
+     --special_points_color=cornflowerblue --point_color=gray80 --sunday_point_color=gray80 
+     --y_prefix="$"
 
 #### A simple graph showing registrations by time from April to September (both x and y truncation)
 !["registrations thumb with x/y bounds"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations_thumb_dates.png)
