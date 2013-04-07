@@ -33,8 +33,8 @@ There is a test directory with some lovely testy stuff in it:
 
     test/test_data - a directory with some test csv files in it
     test/output    - a directory that the test script dumps images into
-    run_test       - a bash script that runs the tests
-    tests.txt      - the test definitions
+    test/run_test  - a bash script that runs the tests
+    test/tests.txt - the test definitions
 
 Go and run the tests and make sure everything passes:
 
