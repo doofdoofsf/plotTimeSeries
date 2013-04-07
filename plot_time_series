@@ -100,8 +100,15 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_ran
 
   setMargins(title_string, y_axis_label, axis_color)
 
-  scatter.smooth(d, y, family="gaussian", col=ifelse((format(d, format="%A")=="Sunday"), 
-    sunday_point_color, point_color), xlab="", ylab="", ylim=y_range, xlim=x_range, span=smoothness, xaxt='n', yaxt='n')
+  result = tryCatch({
+    scatter.smooth(d, y, family="gaussian", col=ifelse((format(d, format="%A")=="Sunday"), 
+      sunday_point_color, point_color), xlab="", ylab="", ylim=y_range, xlim=x_range, span=smoothness, xaxt='n', yaxt='n')
+  }, error = function(e) {
+    print("failed to draw graph with regression, falling back to a basic scatter plot")
+    plot(d, y, col=ifelse((format(d, format="%A")=="Sunday"), 
+      sunday_point_color, point_color), xlab="", ylab="", ylim=y_range, xlim=x_range, xaxt='n', yaxt='n')
+  })
+
   drawSpecialPoints(special_points, special_points_color, input_date_format)
 
   if(!is.null(title_string)) { mtext(side=3, line=1.2, cex=1.6, text=title_string, col="darkorange4") }
