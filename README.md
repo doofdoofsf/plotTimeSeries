@@ -98,7 +98,7 @@ Go and run the tests and make sure everything passes:
       ** All tests passed
 ## Examples
 
-Example graphs are shown below. These are produced by from the data in the `test` directory
+Example graphs are shown below. These are produced from the data in the `test` directory
 
 #### A simple graph showing registrations by time
 !["registrations thumb"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations_thumb.png)
@@ -143,7 +143,7 @@ Example graphs are shown below. These are produced by from the data in the `test
      --remove_outliers --special_points_filename=test_data/acme_revenue_targets.csv 
      --special_points_color=cornflowerblue --point_color=gray80 --sunday_point_color=gray80
 
-#### A simple graph showing registrations by time from April to September
+#### A simple graph showing registrations by time from April to September (both x and y truncation)
 !["registrations thumb with x/y bounds"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations_thumb_dates.png)
 
      ../plot_time_series --width=500 --height=400 --x_spacing=month 

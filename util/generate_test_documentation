@@ -2,7 +2,7 @@
 
 echo "## Examples"
 echo
-echo "Example graphs are shown below. These are produced by from the data in the \`test\` directory"
+echo "Example graphs are shown below. These are produced from the data in the \`test\` directory"
 
 while read test_def; do
   name=`echo $test_def | cut -f1 -d,`
