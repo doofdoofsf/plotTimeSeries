@@ -137,7 +137,7 @@ Example graphs are shown below. These are produced from the data in the `test` d
      --y_line="25000:Target for 2012:gold3!36000:Target for 2013:gold2!42000:Target for 2014:gold1" 
      --y_prefix="$"
 
-#### A detailed graph showing revenue by time with targets
+#### A detailed graph showing revenue by time with time based targets
 !["revenue graph with targets"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue_targets.png)
 
      ../plot_time_series --width=1200 --height=700 --x_spacing=week 
@@ -146,7 +146,7 @@ Example graphs are shown below. These are produced from the data in the `test` d
      --special_points_color=cornflowerblue --point_color=gray80 --sunday_point_color=gray80 
      --y_prefix="$"
 
-#### A simple graph showing registrations by time from April to September (both x and y truncation)
+#### A simple graph showing registrations by time from April to September (x and y truncation)
 !["registrations thumb with x/y bounds"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations_thumb_dates.png)
 
      ../plot_time_series --width=500 --height=400 --x_spacing=month 
