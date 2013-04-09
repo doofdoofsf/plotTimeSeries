@@ -79,7 +79,7 @@ drawYLine <- function(y_line, x_start, x_end) {
   lines=(strsplit(y_line,'!'))
   for(line in lines[[1]]) {
     args=(strsplit(line,':'))
-    y_val <- as.integer(args[[1]][1])
+    y_val <- as.double(args[[1]][1])
     title <- args[[1]][2]
     color <- if (!is.na(args[[1]][3])) args[[1]][3] else default_color
     segments(x_start, y_val, x_end, y_val, col=color, lwd=2)
@@ -235,7 +235,7 @@ plotGraphFromOptions <- function(opt) {
   timeseries_data=read.table(opt$csv_filename, sep=",", head=TRUE)
 
   special_points <- if (!is.null(opt$special_points_filename)) read.table(opt$special_points_filename, sep=",", head=TRUE) else NULL
-  y_range <- if (!is.null(opt$y_range)) as.integer(unlist(strsplit(opt$y_range,':'))) else NULL
+  y_range <- if (!is.null(opt$y_range)) as.double(unlist(strsplit(opt$y_range,':'))) else NULL
   x_range <- if (!is.null(opt$x_range)) as.Date(unlist(strsplit(opt$x_range,':')), opt$input_date_format) else NULL
 
   plotGraph(timeseries_data$date, timeseries_data$value, opt$width, opt$height, opt$x_spacing, opt$smoothness, x_range, y_range, 
