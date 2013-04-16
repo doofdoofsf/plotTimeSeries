@@ -210,7 +210,7 @@ processArgs <- function() {
 
   # set some reasonable defaults for the options that are needed,
   if (!is.null(opt$help)) { usage(spec) }
-  if (is.null(opt$smoothness)) { opt$smoothness = 0.3 }
+  if (is.null(opt$smoothness)) { opt$smoothness = 0.7 }
   if (is.null(opt$width)) { opt$width = 1150 }
   if (is.null(opt$height)) { opt$height = 640 }
   if (is.null(opt$x_spacing)) { opt$x_spacing = "week" }
