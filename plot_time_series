@@ -65,7 +65,8 @@ drawSpecialPoints <- function(special_points, special_points_color, input_date_f
   }
 }
 
-drawAxesAndGridlines <- function(date_sequence, y_sequence, y_unit, y_prefix, show_gridlines) {
+drawAxesAndGridlines <- function(date_sequence, y, y_unit, y_prefix, y_range, show_gridlines) {
+  y_sequence=pretty(c(y, y_range), n=6)
   axis.Date(1, at=date_sequence, format="%d%b%y", las=2)
   axis(2, las=2, at=y_sequence, labels=paste(y_prefix, prettyNum(y_sequence, big.mark=','), y_unit, sep=""))
   if(show_gridlines) {
@@ -117,8 +118,7 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_ran
   if(trim_to_week) { d=trimDateRange(d[1],d[length(d)]) }
   date_sequence=seq(d[1], d[length(d)], x_spacing)
   if(!is.null(y_line)) { drawYLine(y_line, d[1], d[length(d)]) }
-  y_sequence=pretty(y, n=6)
-  drawAxesAndGridlines(date_sequence, y_sequence, y_unit, y_prefix, show_gridlines)
+  drawAxesAndGridlines(date_sequence, y, y_unit, y_prefix, y_range, show_gridlines)
 
   # send output from dev.off to garbage since it's annoying
   garbage <- dev.off()
