@@ -65,8 +65,15 @@ drawSpecialPoints <- function(special_points, special_points_color, input_date_f
   }
 }
 
-drawAxesAndGridlines <- function(date_sequence, y, y_unit, y_prefix, y_range, show_gridlines) {
-  y_sequence=pretty(c(y, y_range), n=6)
+getYSpecialPointsRange <- function(special_points) {
+  if(!is.null(special_points)) {
+    spy <- special_points$value
+    c(min(spy, na.rm = TRUE), max(spy, na.rm = TRUE))
+  }
+}
+
+drawAxesAndGridlines <- function(date_sequence, y_unit, y_prefix, y_range, show_gridlines) {
+  y_sequence=pretty(y_range, n=6)
   axis.Date(1, at=date_sequence, format="%d%b%y", las=2)
   axis(2, las=2, at=y_sequence, labels=paste(y_prefix, prettyNum(y_sequence, big.mark=','), y_unit, sep=""))
   if(show_gridlines) {
@@ -88,14 +95,35 @@ drawYLine <- function(y_line, x_start, x_end) {
   }
 }
 
+getYLineRange <- function(y_line) {
+  y_vals <- vector()
+  if (!is.null(y_line)) {
+    lines=(strsplit(y_line,'!'))
+    for(line in lines[[1]]) {
+      args=(strsplit(line,':'))
+      y_val <- as.double(args[[1]][1]) 
+      y_vals=c(y_vals, y_val)
+    }
+  }
+  y_vals
+}
+
+getYRange <- function(y, y_line, y_range, special_points) {
+  y_line_range = getYLineRange(y_line)
+  total_y_vals=c(getYLineRange(y_line), y, y_range, getYSpecialPointsRange(special_points))
+  c(min(total_y_vals, na.rm = TRUE), max(total_y_vals, na.rm = TRUE))
+}
+
 plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_range, filename, title, 
   y_axis_label, y_unit, y_prefix, point_color, sunday_point_color, show_gridlines, remove_outliers, axis_color, 
   trim_to_week, input_date_format, special_points, special_points_color, y_line) { 
+
   title_string <- if (!is.null(title)) sprintf(title, niceDateFormat(x[1]), niceDateFormat(x[length(x)])) else NULL
   
   d <- as.Date(x, input_date_format)
 
   if(remove_outliers) { y <- removeOutliers(y) }
+  y_range <- getYRange(y, y_line, y_range, special_points)
 
   png(filename=filename, height=height, width=width, bg="white")
 
@@ -118,7 +146,7 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_ran
   if(trim_to_week) { d=trimDateRange(d[1],d[length(d)]) }
   date_sequence=seq(d[1], d[length(d)], x_spacing)
   if(!is.null(y_line)) { drawYLine(y_line, d[1], d[length(d)]) }
-  drawAxesAndGridlines(date_sequence, y, y_unit, y_prefix, y_range, show_gridlines)
+  drawAxesAndGridlines(date_sequence, y_unit, y_prefix, y_range, show_gridlines)
 
   # send output from dev.off to garbage since it's annoying
   garbage <- dev.off()

@@ -1,6 +1,18 @@
 #!/bin/bash
+
+# usage run_test [testfile]
+
 bldred=${txtbld}$(tput setaf 1)
 txtrst=$(tput sgr0)
+
+if [[ -z "$1" ]]
+then
+   testfile=tests.txt
+else
+   testfile=$1
+fi
+
+echo ${testfile}
 
 rm output/*.png 2> /dev/null
 
@@ -20,7 +32,7 @@ while read test_def; do
     echo " passed"
   fi
  
-done < tests.txt
+done < ${testfile}
 
 echo
 if test ${global_result} -eq 0
