@@ -88,6 +88,7 @@ Go and run the tests and make sure everything passes:
 
     $ cd test
     $ ./run_test 
+    tests.txt
       * running test "registrations thumb" ...  passed
       * running test "registrations graph" ...  passed
       * running test "revenue thumb" ...  passed
@@ -112,8 +113,8 @@ Example graphs are shown below. These are produced from the data in the `test` d
 !["registrations graph"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations.png)
 
      ../plot_time_series --width=1200 --height=700 --x_spacing=week 
-     --csv_filename=test_data/acme_registrations.csv --show_gridlines --title="Acme Registrations: %s to 
-     %s" --y_title="Number Registrations" --remove_outliers
+     --csv_filename=test_data/acme_registrations.csv --show_gridlines --smoothness=0.3 --title="Acme 
+     Registrations: %s to %s" --y_title="Number Registrations" --remove_outliers
 
 #### A simple graph showing revenue by time
 !["revenue thumb"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue_thumb.png)
