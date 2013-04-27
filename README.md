@@ -44,8 +44,8 @@ You can use plot_time_series anywhere you can use R, but the tests are *nix flav
           --y_title                    The title shown on the y axis of the graph
           --y_unit                     A string appended to the y axis values e.g. MM
           --y_prefix                   A string prepended to the y axis values e.g. $
-          --y_range                    Manually set Y axis limits e.g. 10:1000
-          --x_range                    Manually set X axis limits e.g. 04/27/2012:05/20/2013
+          --y_range                    Manually set minimum Y axis limits e.g. 10:1000
+          --x_range                    Manually set minimum X axis limits e.g. 04/27/2012:05/20/2013
           --x_spacing                  How the x-axis is spaced e.g. day, 3 days, week, month, 2 weeks, 2 months
           --y_line                     Add a horizontal labeled line at a Y value e.g. "10,000:Target for 2012"
           --point_color                The color to draw points in
