@@ -72,6 +72,13 @@ getYSpecialPointsRange <- function(special_points) {
   }
 }
 
+getXSpecialPointsRange <- function(special_points, input_date_format) {
+  if(!is.null(special_points)) {
+    spx <- as.Date(special_points$date, input_date_format)
+    c(min(spx, na.rm = TRUE), max(spx, na.rm = TRUE))
+  }
+}
+
 drawAxesAndGridlines <- function(date_sequence, y_unit, y_prefix, y_range, show_gridlines) {
   y_sequence=pretty(y_range, n=6)
   axis.Date(1, at=date_sequence, format="%d%b%y", las=2)
@@ -114,6 +121,11 @@ getYRange <- function(y, y_line, y_range, special_points) {
   c(min(total_y_vals, na.rm = TRUE), max(total_y_vals, na.rm = TRUE))
 }
 
+getXRange <- function(x, x_range, special_points, input_date_format) {
+  total_x_vals=c(as.Date(x, input_date_format), x_range, getXSpecialPointsRange(special_points, input_date_format))
+  c(min(total_x_vals, na.rm = TRUE), max(total_x_vals, na.rm = TRUE))
+}
+
 plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_range, filename, title, 
   y_axis_label, y_unit, y_prefix, point_color, sunday_point_color, show_gridlines, remove_outliers, axis_color, 
   trim_to_week, input_date_format, special_points, special_points_color, y_line) { 
@@ -124,6 +136,7 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_ran
 
   if(remove_outliers) { y <- removeOutliers(y) }
   y_range <- getYRange(y, y_line, y_range, special_points)
+  x_range <- getXRange(x, x_range, special_points, input_date_format)
 
   png(filename=filename, height=height, width=width, bg="white")
 
@@ -144,8 +157,8 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_ran
   if(!is.null(y_axis_label)) { mtext(side=2, line=3.4, cex=1.3, text=y_axis_label, col="darkorange4") }
   
   if(trim_to_week) { d=trimDateRange(d[1],d[length(d)]) }
-  date_sequence=seq(d[1], d[length(d)], x_spacing)
-  if(!is.null(y_line)) { drawYLine(y_line, d[1], d[length(d)]) }
+  date_sequence=seq(x_range[1], x_range[2], x_spacing)
+  if(!is.null(y_line)) { drawYLine(y_line, x_range[1], x_range[2]) }
   drawAxesAndGridlines(date_sequence, y_unit, y_prefix, y_range, show_gridlines)
 
   # send output from dev.off to garbage since it's annoying
@@ -174,8 +187,8 @@ usage <- function(spec) {
   cat("      --y_title                    The title shown on the y axis of the graph\n")
   cat("      --y_unit                     A string appended to the y axis values e.g. MM\n")
   cat("      --y_prefix                   A string prepended to the y axis values e.g. $\n")
-  cat("      --y_range                    Manually set Y axis limits e.g. 10:1000\n")
-  cat("      --x_range                    Manually set X axis limits e.g. 04/27/2012:05/20/2013\n")
+  cat("      --y_range                    Manually set minimum Y axis limits e.g. 10:1000\n")
+  cat("      --x_range                    Manually set minimum X axis limits e.g. 04/27/2012:05/20/2013\n")
   cat("      --x_spacing                  How the x-axis is spaced e.g. day, 3 days, week, month, 2 weeks, 2 months\n")
   cat("      --y_line                     Add a horizontal labeled line at a Y value e.g. \"10,000:Target for 2012\"\n")
   cat("      --point_color                The color to draw points in\n")

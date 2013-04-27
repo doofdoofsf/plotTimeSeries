@@ -14,7 +14,7 @@ fi
 
 echo ${testfile}
 
-rm output/*.png 2> /dev/null
+# rm output/*.png 2> /dev/null
 
 while read test_def; do
   name=`echo $test_def | cut -f1 -d,`
