@@ -134,6 +134,16 @@ getXRange <- function(x, x_range, special_points, input_date_format) {
   }
 }
 
+removeOutOfRangePoints <- function(points, x_range, y_range) {
+  if(!is.null(x_range)) {
+    points <- points[points$x >= x_range[1] & points$x <= x_range[2],]
+  }
+  if(!is.null(y_range)) {
+    points <- points[points$y >= y_range[1] & points$y <= y_range[2],]
+  }
+  points
+}
+
 plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_range, filename, title, 
   y_axis_label, y_unit, y_prefix, point_color, sunday_point_color, show_gridlines, remove_outliers, axis_color, 
   trim_to_week, input_date_format, special_points, special_points_color, y_line) { 
@@ -150,8 +160,12 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_ran
 
   setMargins(title_string, y_axis_label, axis_color)
 
+  points <- data.frame(x=d, y=y)
+
+  points <- removeOutOfRangePoints(points, x_range, y_range)
+
   result = tryCatch({
-    scatter.smooth(d, y, family="gaussian", col=ifelse((format(d, format="%A")=="Sunday"), 
+    scatter.smooth(points$x, points$y, family="gaussian", col=ifelse((format(d, format="%A")=="Sunday"), 
       sunday_point_color, point_color), xlab="", ylab="", ylim=y_range, xlim=x_range, span=smoothness, xaxt='n', yaxt='n')
   }, error = function(e) {
     print("failed to draw graph with regression, falling back to a basic scatter plot")
