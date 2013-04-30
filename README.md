@@ -56,7 +56,7 @@ You can use plot_time_series anywhere you can use R, but the tests are *nix flav
           --remove_outliers            Automagically remove outlying points?
           --trim_to_week               Trim the X axis to whole weeks? (x grid goes Sunday to Sunday)
           --show_gridlines             Show gridlines?
-          --label_cex                  Graph label scaling relative to default
+          --label_cex                  Graph label scaling relative to default, used for y_line and special_points
     
     EXAMPLES
           $ plot_time_series --width=800 --height=400 --x_spacing=month --csv_filename=test_data/unbranded_organic_registrations.csv
