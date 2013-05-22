@@ -304,7 +304,7 @@ plotGraphFromOptions <- function(opt) {
   y_range <- if (!is.null(opt$y_range)) as.double(unlist(strsplit(opt$y_range,':'))) else NULL
   x_range <- if (!is.null(opt$x_range)) as.Date(unlist(strsplit(opt$x_range,':')), opt$input_date_format) else NULL
 
-  if(!any(timeseries_data$value)) { cat("Exiting: No data to draw\n") ; q(status=1); }
+  if(!any(timeseries_data$value)) { cat("Warning: No data to draw\n") }
 
   plotGraph(timeseries_data$date, timeseries_data$value, opt$width, opt$height, opt$x_spacing, opt$smoothness, x_range, y_range, 
    opt$output_filename, opt$title, opt$y_title, opt$y_unit, opt$y_prefix, opt$point_color, opt$sunday_point_color, opt$show_gridlines, 
