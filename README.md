@@ -23,7 +23,7 @@ You can use plot_time_series anywhere you can use R, but the tests are *nix flav
           plot_time_series
     
     SYNOPSIS
-           Usage: ../plot_time_series [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-plot_out_of_range|R]] [-[-trim_to_week|T]] [-[-csv_filename|c] <character>] [-[-special_points_filename|S] [<character>]] [-[-special_points_color|C] [<character>]] [-[-output_filename|f] <character>] [-[-input_date_format|d] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-y_prefix|P] <character>] [-[-y_range|Y] [<character>]] [-[-x_range|X] [<character>]] [-[-x_spacing|x] [<character>]] [-[-y_line|L] [<character>]] [-[-label_cex|B] [<double>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
+           Usage: ../plot_time_series [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-plot_out_of_range|R]] [-[-trim_to_week|T]] [-[-csv_filename|c] <character>] [-[-special_points_filename|S] [<character>]] [-[-special_points_color|C] [<character>]] [-[-output_filename|f] <character>] [-[-input_date_format|d] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-y_prefix|P] <character>] [-[-y_range|Y] [<character>]] [-[-x_range|X] [<character>]] [-[-x_spacing|x] [<character>]] [-[-y_line|L] [<character>]] [-[-label_cex|B] [<double>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
     
     DESCRIPTION
           The plot_time_series is a simple utility for plotting a time series graph using R.
@@ -53,7 +53,6 @@ You can use plot_time_series anywhere you can use R, but the tests are *nix flav
           --input_date_format          The format of the date in the datafile, default is "%m/%d/%Y"
           --axis_color                 The color to use for the axis
           --smoothness                 How much to smooth the LOESS fit line. Float between 0 and 1
-          --remove_outliers            Automagically remove outlying points?
           --plot_out_of_range          Plot out of range points and use them in the interpolation?
           --trim_to_week               Trim the X axis to whole weeks? (x grid goes Sunday to Sunday)
           --show_gridlines             Show gridlines?
@@ -109,50 +108,48 @@ Example graphs are shown below. These are produced from the data in the `test` d
 
      ../plot_time_series --width=500 --height=400 --x_spacing=month 
      --csv_filename=test_data/acme_registrations.csv --point_color=gray80 --sunday_point_color=gray80 
-     --remove_outliers --smoothness=0.8
+     --smoothness=0.8
 
 #### A detailed graph showing registrations by time
 !["registrations graph"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations.png)
 
      ../plot_time_series --width=1200 --height=700 --x_spacing=week 
      --csv_filename=test_data/acme_registrations.csv --show_gridlines --smoothness=0.3 --title="Acme 
-     Registrations: %s to %s" --y_title="Number Registrations" --remove_outliers
+     Registrations: %s to %s" --y_title="Number Registrations"
 
 #### A simple graph showing revenue by time
 !["revenue thumb"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue_thumb.png)
 
      ../plot_time_series --width=500 --height=400 --x_spacing="2 months" 
      --csv_filename=test_data/acme_revenue.csv --point_color=gray80 --sunday_point_color=gray80 
-     --remove_outliers --smoothness=0.8 --y_line="35000:Target" --y_prefix="$" --label_cex=1.1
+     --smoothness=0.8 --y_line="35000:Target" --y_prefix="$" --label_cex=1.1
 
 #### A detailed graph showing revenue by time
 !["revenue graph"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue.png)
 
      ../plot_time_series --width=1200 --height=700 --x_spacing=week 
      --csv_filename=test_data/acme_revenue.csv --show_gridlines --title="Acme Revenue: %s to %s" 
-     --remove_outliers --y_prefix="$"
+     --y_prefix="$"
 
 #### A detailed graph showing revenue by time with multiple target lines with custom colors
 !["revenue graph with target line"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue_target_line.png)
 
      ../plot_time_series --width=1200 --height=700 --x_spacing=week 
-     --csv_filename=test_data/acme_revenue.csv --title="Acme Revenue: %s to %s" --remove_outliers 
-     --y_line="25000:Target for 2012:gold3!36000:Target for 2013:gold2!42000:Target for 2014:gold1" 
-     --y_prefix="$"
+     --csv_filename=test_data/acme_revenue.csv --title="Acme Revenue: %s to %s" --y_line="25000:Target 
+     for 2012:gold3!36000:Target for 2013:gold2!42000:Target for 2014:gold1" --y_prefix="$"
 
 #### A detailed graph showing revenue by time with time based targets
 !["revenue graph with targets"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_revenue_targets.png)
 
      ../plot_time_series --width=1200 --height=700 --x_spacing=week 
      --csv_filename=test_data/acme_revenue.csv --show_gridlines --title="Acme Revenue: %s to %s" 
-     --remove_outliers --special_points_filename=test_data/acme_revenue_targets.csv 
-     --special_points_color=cornflowerblue --point_color=gray80 --sunday_point_color=gray80 
-     --y_prefix="$"
+     --special_points_filename=test_data/acme_revenue_targets.csv --special_points_color=cornflowerblue 
+     --point_color=gray80 --sunday_point_color=gray80 --y_prefix="$"
 
 #### A simple graph showing registrations by time from April to September (x and y truncation)
 !["registrations thumb with x/y bounds"](https://raw.github.com/doofdoofsf/plotTimeSeries/master/test/output/acme_registrations_thumb_dates.png)
 
      ../plot_time_series --width=500 --height=400 --x_spacing=month 
      --csv_filename=test_data/acme_registrations.csv --title="April to September" --point_color=gray80 
-     --sunday_point_color=cornflowerblue --remove_outliers --smoothness=0.2 
-     --x_range=04/01/2012:09/01/2012 --y_range=50:250
+     --sunday_point_color=cornflowerblue --smoothness=0.2 --x_range=04/01/2012:09/01/2012 
+     --y_range=50:250
