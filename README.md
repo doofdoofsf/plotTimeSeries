@@ -23,7 +23,7 @@ You can use plot_time_series anywhere you can use R, but the tests are *nix flav
           plot_time_series
     
     SYNOPSIS
-           Usage: ../plot_time_series [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-trim_to_week|T]] [-[-csv_filename|c] <character>] [-[-special_points_filename|S] [<character>]] [-[-special_points_color|C] [<character>]] [-[-output_filename|f] <character>] [-[-input_date_format|d] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-y_prefix|P] <character>] [-[-y_range|Y] [<character>]] [-[-x_range|X] [<character>]] [-[-x_spacing|x] [<character>]] [-[-y_line|L] [<character>]] [-[-label_cex|B] [<double>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
+           Usage: ../plot_time_series [-[-verbose|v]] [-[-help|h]] [-[-show_gridlines|g]] [-[-remove_outliers|o]] [-[-plot_out_of_range|R]] [-[-trim_to_week|T]] [-[-csv_filename|c] <character>] [-[-special_points_filename|S] [<character>]] [-[-special_points_color|C] [<character>]] [-[-output_filename|f] <character>] [-[-input_date_format|d] <character>] [-[-title|t] <character>] [-[-y_title|y] <character>] [-[-y_unit|s] <character>] [-[-y_prefix|P] <character>] [-[-y_range|Y] [<character>]] [-[-x_range|X] [<character>]] [-[-x_spacing|x] [<character>]] [-[-y_line|L] [<character>]] [-[-label_cex|B] [<double>]] [-[-smoothness|m] [<double>]] [-[-width|w] [<integer>]] [-[-height|u] [<integer>]] [-[-point_color|p] [<character>]] [-[-sunday_point_color|z] [<character>]] [-[-axis_color|a] [<character>]]
     
     DESCRIPTION
           The plot_time_series is a simple utility for plotting a time series graph using R.
@@ -54,6 +54,7 @@ You can use plot_time_series anywhere you can use R, but the tests are *nix flav
           --axis_color                 The color to use for the axis
           --smoothness                 How much to smooth the LOESS fit line. Float between 0 and 1
           --remove_outliers            Automagically remove outlying points?
+          --plot_out_of_range          Plot out of range points and use them in the interpolation?
           --trim_to_week               Trim the X axis to whole weeks? (x grid goes Sunday to Sunday)
           --show_gridlines             Show gridlines?
           --label_cex                  Graph label scaling relative to default, used for y_line and special_points
