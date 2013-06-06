@@ -145,7 +145,7 @@ removeOutOfRangePoints <- function(points, x_range, y_range) {
 }
 
 plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_range, filename, title, 
-  y_axis_label, y_unit, y_prefix, point_color, sunday_point_color, show_gridlines, remove_outliers, axis_color, 
+  y_axis_label, y_unit, y_prefix, point_color, sunday_point_color, show_gridlines, remove_outliers, plot_out_of_range, axis_color, 
   trim_to_week, input_date_format, special_points, special_points_color, y_line, label_cex) { 
 
   title_string <- if (!is.null(title)) sprintf(title, niceDateFormat(x[1]), niceDateFormat(x[length(x)])) else NULL
@@ -162,7 +162,7 @@ plotGraph <- function(x, y, width, height, x_spacing, smoothness, x_range, y_ran
 
   points <- data.frame(x=d, y=y)
 
-  points <- removeOutOfRangePoints(points, x_range, y_range)
+  if(!plot_out_of_range) { points <- removeOutOfRangePoints(points, x_range, y_range) }
 
   result = tryCatch({
     scatter.smooth(points$x, points$y, family="gaussian", col=ifelse((format(d, format="%A")=="Sunday"), 
@@ -219,6 +219,7 @@ usage <- function(spec) {
   cat("      --axis_color                 The color to use for the axis\n")
   cat("      --smoothness                 How much to smooth the LOESS fit line. Float between 0 and 1\n")
   cat("      --remove_outliers            Automagically remove outlying points?\n")
+  cat("      --plot_out_of_range          Plot out of range points and use them in the interpolation?\n")
   cat("      --trim_to_week               Trim the X axis to whole weeks? (x grid goes Sunday to Sunday)\n")
   cat("      --show_gridlines             Show gridlines?\n")
   cat("      --label_cex                  Graph label scaling relative to default, used for y_line and special_points\n")
@@ -247,6 +248,7 @@ processArgs <- function() {
     'help', 'h', 0, "logical",
     'show_gridlines', 'g', 0, "logical",
     'remove_outliers', 'o', 0, "logical",
+    'plot_out_of_range', 'R', 0, "logical",
     'trim_to_week', 'T', 0, "logical",
     'csv_filename', 'c', 1, "character",
     'special_points_filename', 'S', 2, "character",
@@ -285,6 +287,7 @@ processArgs <- function() {
   if (is.null(opt$axis_color)) { opt$axis_color = "gray30" }
   if (is.null(opt$show_gridlines)) { opt$show_gridlines = FALSE }
   if (is.null(opt$remove_outliers)) { opt$remove_outliers = FALSE }
+  if (is.null(opt$plot_out_of_range)) { opt$plot_out_of_range = FALSE }
   if (is.null(opt$trim_to_week)) { opt$trim_to_week = FALSE }
   if (is.null(opt$verbose)) { opt$verbose = FALSE }
   if (is.null(opt$csv_filename)) { usage(spec) }
@@ -308,7 +311,7 @@ plotGraphFromOptions <- function(opt) {
 
   plotGraph(timeseries_data$date, timeseries_data$value, opt$width, opt$height, opt$x_spacing, opt$smoothness, x_range, y_range, 
    opt$output_filename, opt$title, opt$y_title, opt$y_unit, opt$y_prefix, opt$point_color, opt$sunday_point_color, opt$show_gridlines, 
-   opt$remove_outliers, opt$axis_color, opt$trim_to_week, opt$input_date_format, special_points, opt$special_points_color, opt$y_line, opt$label_cex)
+   opt$remove_outliers, opt$plot_out_of_range, opt$axis_color, opt$trim_to_week, opt$input_date_format, special_points, opt$special_points_color, opt$y_line, opt$label_cex)
 }
 
 plotGraphFromOptions(processArgs())
