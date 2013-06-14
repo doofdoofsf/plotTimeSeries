@@ -22,6 +22,7 @@
 #   Version:    1.0:     Created:  John D Quinn, http://www.johnandcailin.com/john
 #
 
+
 trimDateRange <- function(start_date, end_date) {
   my_days <- seq(start_date, end_date, by = "day")
   first_sunday <- which(weekdays(head(my_days, 7)) == "Sunday")
@@ -291,13 +292,13 @@ processArgs <- function() {
 }
 
 plotGraphFromOptions <- function(opt) {
-  timeseries_data=read.table(opt$csv_filename, sep=",", head=TRUE, quote = "")
+  timeseries_data=read.table(opt$csv_filename, sep=",", head=TRUE, quote = "\"")
 
-  special_points <- if (!is.null(opt$special_points_filename)) read.table(opt$special_points_filename, sep=",", head=TRUE) else NULL
+  special_points <- if (!is.null(opt$special_points_filename)) read.table(opt$special_points_filename, sep=",", head=TRUE, quote = "\"") else NULL
   y_range <- if (!is.null(opt$y_range)) as.double(unlist(strsplit(opt$y_range,':'))) else NULL
   x_range <- if (!is.null(opt$x_range)) as.Date(unlist(strsplit(opt$x_range,':')), opt$input_date_format) else NULL
 
-  if(!any(timeseries_data$value)) { cat("Warning: No data to draw\n") }
+  # if(!any(timeseries_data$value)) { cat("Warning: No data to draw\n") }
 
   plotGraph(timeseries_data$date, timeseries_data$value, opt$width, opt$height, opt$x_spacing, opt$smoothness, x_range, y_range, 
    opt$output_filename, opt$title, opt$y_title, opt$y_unit, opt$y_prefix, opt$point_color, opt$sunday_point_color, opt$show_gridlines, 
