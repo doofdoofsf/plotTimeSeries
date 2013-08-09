@@ -35,6 +35,18 @@ niceDateFormat <- function(date_string) {
   pretty_date_string = strftime(d, format="%d%b%y")
 }
 
+formatLargeNumbers <- function(number) {
+  if (number >= 1000000) {
+    paste(prettyNum(number/1000000, big.mark=',', digits=3),"M", sep="")
+  }
+  else if (number >= 1000) {
+    paste(prettyNum(number/1000, big.mark=',', digits=3),"K", sep="")
+  }
+  else {
+    prettyNum(number, big.mark=',')
+  }
+}
+
 setMargins <- function(title_string, y_axis_label, axis_color) {
   # http://stat.ethz.ch/R-manual/R-patched/library/graphics/html/par.html
   # margins: bottom, left, top, right
@@ -74,7 +86,7 @@ getXSpecialPointsRange <- function(special_points, input_date_format) {
 drawAxesAndGridlines <- function(date_sequence, y_unit, y_prefix, y_range, show_gridlines) {
   y_sequence=pretty(y_range, n=6)
   axis.Date(1, at=date_sequence, format="%d%b%y", las=2)
-  axis(2, las=2, at=y_sequence, labels=paste(y_prefix, prettyNum(y_sequence, big.mark=','), y_unit, sep=""))
+  axis(2, las=2, at=y_sequence, labels=paste(y_prefix, lapply(y_sequence, formatLargeNumbers), y_unit, sep=""))
   if(show_gridlines) {
     abline(v=date_sequence, col="gray87")
     abline(h=y_sequence, col="gray87")
